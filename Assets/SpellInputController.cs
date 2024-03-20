@@ -114,6 +114,11 @@ public class SpellInputController : MonoBehaviour
         }
     }
 
+    public void ResetOrder()
+    {
+        currentOrder.Clear();
+    }
+
     public void PositionHovered(SpellShape.Position pos)
     {
         //Debug.Log(SpellShape.PositionAsString(pos));
