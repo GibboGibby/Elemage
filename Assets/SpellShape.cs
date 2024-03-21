@@ -15,6 +15,12 @@ public class SpellShape
         this.shape = shape;
     }
 
+    public SpellShape(int[,] shape, bool reversible)
+    {
+        this.shape = shape;
+        this.reverseAllowed = reversible;
+    }
+
     public SpellShape(Position[] positions, int len)
     {
         for (int i = 0; i < len; i++)

@@ -344,8 +344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c204c7a2fc0af4686fce180793185d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellController: {fileID: 0}
+  leftHandSpellInputController: {fileID: 0}
+  rightHandSpellInputController: {fileID: 0}
   text: {fileID: 0}
+  playerSpellController: {fileID: 0}
 --- !u!65 &416401806
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -502,13 +504,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631205256}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64c204c7a2fc0af4686fce180793185d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellController: {fileID: 106534746}
+  leftHandSpellInputController: {fileID: 0}
+  rightHandSpellInputController: {fileID: 0}
   text: {fileID: 2014720843}
+  playerSpellController: {fileID: 0}
 --- !u!4 &631205258
 Transform:
   m_ObjectHideFlags: 0
@@ -959,6 +963,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1599999492596488702, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}
   m_PrefabInstance: {fileID: 1168131864}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1168131866 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1723512563769369938, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}
+  m_PrefabInstance: {fileID: 1168131864}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf0eeb968ed1c547b004a9d7a39e21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1250948915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,6 +1292,7 @@ GameObject:
   - component: {fileID: 1856558080}
   - component: {fileID: 1856558085}
   - component: {fileID: 1856558086}
+  - component: {fileID: 1856558087}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1440,10 +1456,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3139a39563caeb4ea5796e16a657559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  rb: {fileID: 0}
+  playerController: {fileID: 1856558080}
+  rb: {fileID: 1856558085}
+  voiceController: {fileID: 0}
   leftHandCanvas: {fileID: 1168131865}
   rightHandCanvas: {fileID: 332473465}
+--- !u!114 &1856558087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856558079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64c204c7a2fc0af4686fce180793185d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandSpellInputController: {fileID: 1168131866}
+  rightHandSpellInputController: {fileID: 106534746}
+  text: {fileID: 2014720843}
+  playerSpellController: {fileID: 0}
 --- !u!114 &2014720843 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4382322773519865282, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}

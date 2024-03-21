@@ -6,15 +6,28 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 using TMPro;
 
-public class VoiceThing : MonoBehaviour
+public class VoiceController : MonoBehaviour
 {
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     private SpellShape spellShape;
     private SpellShape fireballShape;
 
-    [SerializeField] private SpellInputController spellController;
+    [SerializeField] private SpellInputController leftHandSpellInputController;
+    [SerializeField] private SpellInputController rightHandSpellInputController;
     [SerializeField] private TextMeshProUGUI text;
+
+    [SerializeField] private PlayerSpellController playerSpellController;
+
+    public void StartKeywordRecognizer()
+    {
+        keywordRecognizer.Start();
+    }
+
+    public void StopKeywordRecognizer()
+    {
+        keywordRecognizer.Stop();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -90,25 +103,65 @@ public class VoiceThing : MonoBehaviour
         transform.Translate(-1, 0, 0);
     }
 
+    private void AddSpellToHand(string spell)
+    {
+        if (SpellManager.SpellShapes[spell] == null || SpellManager.SpellMonos[spell] == null)
+        {
+            Debug.LogError("big error, cannot find spell");
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            SpellShape temp = new SpellShape(leftHandSpellInputController.GetCurrentOrder().ToArray(), leftHandSpellInputController.GetCurrentOrder().Count);
+            if (temp == SpellManager.SpellShapes[spell])
+            {
+                text.text = spell + " has been cast";
+                Debug.Log(spell + " on left hand");
+
+                playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], false);
+            }
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            SpellShape temp = new SpellShape(rightHandSpellInputController.GetCurrentOrder().ToArray(), rightHandSpellInputController.GetCurrentOrder().Count);
+            if (temp == SpellManager.SpellShapes[spell])
+            {
+                text.text = spell + " has been cast";
+                Debug.Log(spell + " on left hand");
+
+                playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], true);
+            }
+        }
+
+        if (!Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E))
+        {
+            SpellShape leftTemp = new SpellShape(leftHandSpellInputController.GetCurrentOrder().ToArray(), leftHandSpellInputController.GetCurrentOrder().Count);
+            if (leftTemp == SpellManager.SpellShapes[spell])
+            {
+                text.text = spell + " has been cast";
+                Debug.Log(spell + " on left hand");
+
+                playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], false);
+            }
+            SpellShape temp = new SpellShape(rightHandSpellInputController.GetCurrentOrder().ToArray(), rightHandSpellInputController.GetCurrentOrder().Count);
+            if (temp == SpellManager.SpellShapes[spell])
+            {
+                text.text = spell + " has been cast";
+                Debug.Log(spell + " on left hand");
+
+                playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], true);
+            }
+        }
+    }
+
     private void Fireball()
     {
-        Debug.Log("Fireball has been cast");
-        SpellShape temp = new SpellShape(spellController.GetCurrentOrder().ToArray(), spellController.GetCurrentOrder().Count);
-        if (temp == fireballShape)
-        {
-            text.text = "Fireball has been cast";
-        }
+        AddSpellToHand("fireball");
     }
 
     private void Sleep()
     {
-        Debug.Log("Sleep recognised");
-        SpellShape temp = new SpellShape(spellController.GetCurrentOrder().ToArray(), spellController.GetCurrentOrder().Count);
-        if (temp == spellShape)
-        {
-            Debug.Log("Sleep successfully cast");
-            text.text = "Sleep has been cast";
-        }
+        AddSpellToHand("sleep");
     }
 
 }
