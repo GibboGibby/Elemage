@@ -60,7 +60,7 @@ public class VoiceController : MonoBehaviour
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognisedSpeech;
-        keywordRecognizer.Start();
+        //keywordRecognizer.Start();
     }
 
     private void PrintOutSpell(SpellShape shape)
@@ -75,7 +75,7 @@ public class VoiceController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            PrintOutSpell(spellShape);
+            PrintOutSpell(SpellManager.SpellShapes["sleep"]);
         }
     }
 
@@ -105,14 +105,17 @@ public class VoiceController : MonoBehaviour
 
     private void AddSpellToHand(string spell)
     {
-        if (SpellManager.SpellShapes[spell] == null || SpellManager.SpellMonos[spell] == null)
+        if (!SpellManager.SpellShapes.ContainsKey(spell) || !SpellManager.SpellMonos.ContainsKey(spell))
         {
             Debug.LogError("big error, cannot find spell");
         }
         if (Input.GetKey(KeyCode.Q))
         {
             SpellShape temp = new SpellShape(leftHandSpellInputController.GetCurrentOrder().ToArray(), leftHandSpellInputController.GetCurrentOrder().Count);
-            if (temp == SpellManager.SpellShapes[spell])
+            SpellShape other = SpellManager.SpellShapes[spell];
+            Debug.Log("Other: ");
+            PrintOutSpell(other);
+            if (temp == other)
             {
                 text.text = spell + " has been cast";
                 Debug.Log(spell + " on left hand");
@@ -124,10 +127,13 @@ public class VoiceController : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             SpellShape temp = new SpellShape(rightHandSpellInputController.GetCurrentOrder().ToArray(), rightHandSpellInputController.GetCurrentOrder().Count);
-            if (temp == SpellManager.SpellShapes[spell])
+            SpellShape other = SpellManager.SpellShapes[spell];
+            Debug.Log("Other: ");
+            PrintOutSpell(other);
+            if (temp == other)
             {
                 text.text = spell + " has been cast";
-                Debug.Log(spell + " on left hand");
+                Debug.Log(spell + " on right hand");
 
                 playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], true);
             }
@@ -135,6 +141,7 @@ public class VoiceController : MonoBehaviour
 
         if (!Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E))
         {
+            Debug.Log("It is always here");
             SpellShape leftTemp = new SpellShape(leftHandSpellInputController.GetCurrentOrder().ToArray(), leftHandSpellInputController.GetCurrentOrder().Count);
             if (leftTemp == SpellManager.SpellShapes[spell])
             {
@@ -161,6 +168,7 @@ public class VoiceController : MonoBehaviour
 
     private void Sleep()
     {
+        Debug.Log("This sleep is being called");
         AddSpellToHand("sleep");
     }
 

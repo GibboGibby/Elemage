@@ -12,16 +12,16 @@ public class Sleep : SpellMono
     }
     public override void OnHold()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Slept Holding");
     }
 
     public override void OnPress()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Slept Press");
     }
 
     public override void OnRelease()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Slept Release");
     }
 }

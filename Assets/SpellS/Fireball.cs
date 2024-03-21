@@ -13,16 +13,18 @@ public class Fireball : SpellMono
 
     public override void OnHold()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Aiming Fireball");
+        //throw new System.NotImplementedException();
     }
 
     public override void OnPress()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void OnRelease()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Fireball fired");
+        //throw new System.NotImplementedException();
     }
 }

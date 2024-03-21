@@ -312,128 +312,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1599999492596488702, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}
   m_PrefabInstance: {fileID: 1079103228199445973}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &416401804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 416401809}
-  - component: {fileID: 416401808}
-  - component: {fileID: 416401807}
-  - component: {fileID: 416401806}
-  - component: {fileID: 416401805}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &416401805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416401804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64c204c7a2fc0af4686fce180793185d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftHandSpellInputController: {fileID: 0}
-  rightHandSpellInputController: {fileID: 0}
-  text: {fileID: 0}
-  playerSpellController: {fileID: 0}
---- !u!65 &416401806
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416401804}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &416401807
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416401804}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &416401808
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416401804}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &416401809
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416401804}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &492959119
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 1536526623}
---- !u!1 &631205256
+--- !u!1 &615225023
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -488,41 +366,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 631205258}
-  - component: {fileID: 631205257}
+  - component: {fileID: 615225025}
+  - component: {fileID: 615225024}
   m_Layer: 0
-  m_Name: TestPlayer
+  m_Name: SpellManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &631205257
+--- !u!114 &615225024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631205256}
-  m_Enabled: 0
+  m_GameObject: {fileID: 615225023}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64c204c7a2fc0af4686fce180793185d, type: 3}
+  m_Script: {fileID: 11500000, guid: e2dd8dac22c64924db8e7d1c2857af89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHandSpellInputController: {fileID: 0}
-  rightHandSpellInputController: {fileID: 0}
-  text: {fileID: 2014720843}
-  playerSpellController: {fileID: 0}
---- !u!4 &631205258
+--- !u!4 &615225025
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631205256}
+  m_GameObject: {fileID: 615225023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.99699, y: 15.696559, z: -22.612314}
+  m_LocalPosition: {x: 1.9882522, y: 6.2561255, z: -0.7351103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1476,7 +1350,7 @@ MonoBehaviour:
   leftHandSpellInputController: {fileID: 1168131866}
   rightHandSpellInputController: {fileID: 106534746}
   text: {fileID: 2014720843}
-  playerSpellController: {fileID: 0}
+  playerSpellController: {fileID: 1856558086}
 --- !u!114 &2014720843 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4382322773519865282, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}
@@ -1707,9 +1581,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 705507995}
-  - {fileID: 416401809}
   - {fileID: 33724062}
-  - {fileID: 631205258}
   - {fileID: 1013860403}
   - {fileID: 1856558084}
   - {fileID: 2116110282}
@@ -1718,3 +1590,4 @@ SceneRoots:
   - {fileID: 1667259649}
   - {fileID: 1079103228199445973}
   - {fileID: 1168131864}
+  - {fileID: 615225025}

@@ -79,18 +79,29 @@ public class PlayerSpellController : MonoBehaviour
     {
         if (spellInputEnabled) return;
 
+        if (leftMainSpell == null) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             // Left Fire
-            
+            leftMainSpell.OnPress();
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            leftMainSpell.OnHold();
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             // Left Release
-            Destroy(leftMainSpell);
+            leftMainSpell.OnRelease();
+            Destroy(GetComponent(leftMainSpell.GetType()));
             leftMainSpell = leftSideSpell;
             leftSideSpell = null;
         }
+
+        if (rightMainSpell == null) return;
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -99,8 +110,8 @@ public class PlayerSpellController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(1))
         {
-            // Left Release
-            Destroy(rightMainSpell);
+            // Right Release
+            Destroy(GetComponent(rightMainSpell.GetType()));
             rightMainSpell = rightSideSpell;
             rightSideSpell = null;
         }
@@ -114,14 +125,14 @@ public class PlayerSpellController : MonoBehaviour
         if (spellInputEnabled && Input.GetKeyDown(KeyCode.Space))
         {
             //Swap Spells
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKey(KeyCode.Q))
             {
                 //Swap Left Hand Spells
                 SpellMono temp = leftMainSpell;
                 leftMainSpell = leftSideSpell;
                 leftSideSpell = temp;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKey(KeyCode.E))
             {
                 //Swap Right Hand Spell
                 SpellMono temp = rightMainSpell;
@@ -133,10 +144,10 @@ public class PlayerSpellController : MonoBehaviour
         HandleCastingSpells();
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Debug.Log("Left hand main is " + leftMainSpell == null ? "null" : leftMainSpell.GetType().Name + " with a spell name of " + leftMainSpell.spellName);
-            Debug.Log("Left hand side is " + leftSideSpell == null ? "null" : leftSideSpell.GetType().Name + " with a spell name of " + leftSideSpell.spellName);
-            Debug.Log("Right hand main is " + rightMainSpell == null ? "null" : rightMainSpell.GetType().Name + " with a spell name of " + rightMainSpell.spellName);
-            Debug.Log("Right hand side is " + rightSideSpell == null ? "null" : rightSideSpell.GetType().Name + " with a spell name of " + rightSideSpell.spellName);
+            if (leftMainSpell != null) Debug.Log("Left hand main is " + leftMainSpell.GetType().Name + " with a spell name of " + leftMainSpell.spellName);
+            if (leftSideSpell != null) Debug.Log("Left hand side is " + leftSideSpell.GetType().Name + " with a spell name of " + leftSideSpell.spellName);
+            if (rightMainSpell != null) Debug.Log("Right hand main is " + rightMainSpell.GetType().Name + " with a spell name of " + rightMainSpell.spellName);
+            if (rightSideSpell != null) Debug.Log("Right hand side is " + rightSideSpell.GetType().Name + " with a spell name of " + rightSideSpell.spellName);
         }
     }
 }
