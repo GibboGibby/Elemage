@@ -5,10 +5,16 @@ using UnityEngine;
 public class Fireball : SpellMono
 {
     // Start is called before the first frame update
-    
+    private Camera main;
+
     public Fireball()
     {
         spellName = "Fireball";
+    }
+
+    private void Start()
+    {
+        main = Camera.main;
     }
 
     public override void OnHold()
@@ -26,5 +32,9 @@ public class Fireball : SpellMono
     {
         Debug.Log("Fireball fired");
         //throw new System.NotImplementedException();
+
+        GameObject fireball = Instantiate(ProjectileSupplier.Instance.prefabs["fireball"]);
+        fireball.transform.position = main.transform.position + main.transform.forward;
+        fireball.GetComponent<Rigidbody>().AddForce(main.transform.forward * 50f, ForceMode.Impulse);
     }
 }

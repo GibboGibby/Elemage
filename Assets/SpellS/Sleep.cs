@@ -6,9 +6,16 @@ public class Sleep : SpellMono
 {
     // Start is called before the first frame update
 
+    Camera mainCam;
+
     public Sleep()
     {
         spellName = "Sleep";
+    }
+
+    private void Start()
+    {
+        mainCam = Camera.main;
     }
     public override void OnHold()
     {
@@ -23,5 +30,9 @@ public class Sleep : SpellMono
     public override void OnRelease()
     {
         Debug.Log("Slept Release");
+
+        GameObject fireball = Instantiate(ProjectileSupplier.Instance.prefabs["sleep"]);
+        fireball.transform.position = mainCam.transform.position + mainCam.transform.forward;
+        fireball.GetComponent<Rigidbody>().AddForce(mainCam.transform.forward * 10f, ForceMode.Impulse);
     }
 }

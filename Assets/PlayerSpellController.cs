@@ -13,9 +13,9 @@ public class PlayerSpellController : MonoBehaviour
     [SerializeField] private GameObject leftHandCanvas;
     [SerializeField] private GameObject rightHandCanvas;
 
-    private SpellMono leftMainSpell = null;
+    [SerializeField] private SpellMono leftMainSpell = null;
     private SpellMono leftSideSpell = null;
-    private SpellMono rightMainSpell = null;
+    [SerializeField] private SpellMono rightMainSpell = null;
     private SpellMono rightSideSpell = null;
 
     bool spellInputEnabled = false;
