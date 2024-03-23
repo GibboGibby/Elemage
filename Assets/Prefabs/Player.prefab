@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 4635566323063125000}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,6 +215,8 @@ MonoBehaviour:
   voiceController: {fileID: 0}
   leftHandCanvas: {fileID: 0}
   rightHandCanvas: {fileID: 0}
+  leftMainSpell: {fileID: 0}
+  rightMainSpell: {fileID: 0}
 --- !u!114 &4635566323063125000
 MonoBehaviour:
   m_ObjectHideFlags: 0

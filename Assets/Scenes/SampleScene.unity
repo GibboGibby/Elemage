@@ -637,8 +637,12 @@ PrefabInstance:
       value: LeftHandCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 1723512563769369938, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}
+      propertyPath: resetKey
+      value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723512563769369938, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}
       propertyPath: canvasDistance
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8523947486348990082, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}
       propertyPath: m_Pivot.x

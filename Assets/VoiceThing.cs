@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 using TMPro;
+using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class VoiceController : MonoBehaviour
 {
@@ -56,7 +57,8 @@ public class VoiceController : MonoBehaviour
         actions.Add("back", Back);
         actions.Add("fireball", Fireball);
         actions.Add("sleep", Sleep);
-        actions.Add("somnum", Sleep);
+        actions.Add("blink", Blink);
+        //actions.Add("somnum", Sleep);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognisedSpeech;
@@ -76,6 +78,14 @@ public class VoiceController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             PrintOutSpell(SpellManager.SpellShapes["sleep"]);
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            foreach (var key in actions.Keys)
+            {
+                actions[key].Invoke();
+            }
         }
     }
 
@@ -170,6 +180,11 @@ public class VoiceController : MonoBehaviour
     {
         Debug.Log("This sleep is being called");
         AddSpellToHand("sleep");
+    }
+
+    private void Blink()
+    {
+        AddSpellToHand("blink");
     }
 
 }

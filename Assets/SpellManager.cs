@@ -17,7 +17,8 @@ public class SpellManager : MonoBehaviour
 
     public static Dictionary<string, SpellMono> SpellMonos = new Dictionary<string, SpellMono>() {
         {"fireball", new Fireball() },
-        {"sleep", new Sleep() }
+        {"sleep", new Sleep() },
+        {"blink", new Blink() }
     };
 
 
@@ -34,6 +35,14 @@ public class SpellManager : MonoBehaviour
             {5,2,0},
             {0,1,0}
         }, true)},
+
+        { "blink", new SpellShape(new int[,]{
+            {0,5,0},
+            {2,3,4},
+            {1,0,0}
+        }, true)},
+
+
     };
 
     void Start()

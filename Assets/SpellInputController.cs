@@ -29,6 +29,8 @@ public class SpellInputController : MonoBehaviour
 
     private int currentLrIndex = 0;
 
+    [SerializeField] KeyCode resetKey = KeyCode.E;
+
     public List<GridPositions> GetGridPositions() { return positions; }
     // Start is called before the first frame update
     void Start()
@@ -92,7 +94,7 @@ public class SpellInputController : MonoBehaviour
             
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && Input.GetKey(resetKey))
         {
             currentOrder.Clear();
         }
@@ -156,7 +158,7 @@ public class SpellInputController : MonoBehaviour
             Vector3 thing = new Vector3(Input.mousePosition.x, Input.mousePosition.y, canvasDistance);
             Vector2 newVec = new Vector2(positionsMap[currentOrder.Last()].transform.position.x, positionsMap[currentOrder.Last()].transform.position.y);
             Vector3 objectInWorld = Camera.main.WorldToScreenPoint(positionsMap[currentOrder.Last()].transform.position);
-            Debug.Log("Distance between mouse and " + transform.parent.name + " is - " + Vector2.Distance(Input.mousePosition, objectInWorld));
+            //Debug.Log("Distance between mouse and " + transform.parent.name + " is - " + Vector2.Distance(Input.mousePosition, objectInWorld));
             if (Mathf.Abs(Vector2.Distance(Input.mousePosition, objectInWorld)) > 250f)
             {
                 lr.positionCount = currentOrder.Count;
