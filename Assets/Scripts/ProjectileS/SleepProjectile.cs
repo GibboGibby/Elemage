@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballProjectile : ProjectileBase
+public class SleepProjectile : ProjectileBase
 {
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class FireballProjectile : ProjectileBase
     public override void OnHitEnemy(GameObject enemy)
     {
         Debug.Log("Specifically fireball has hit an enemy");
-        enemy.GetComponent<EnemyController>().EnemyHit(20f);
+        enemy.GetComponent<EnemyController>().EnemySleep();
         Destroy(gameObject);
     }
 

@@ -16,12 +16,12 @@ public class ProjectileBase : MonoBehaviour
         
     }
 
-    public virtual void OnHitEnemy()
+    public virtual void OnHitEnemy(GameObject enemy)
     {
         Debug.Log("projectile has hit enemy");
     }
 
-    public virtual void OnHitNothing()
+    public virtual void OnHitNothing(GameObject enemy)
     {
         Debug.Log("projectile has hit nothing");
     }
@@ -32,12 +32,12 @@ public class ProjectileBase : MonoBehaviour
 
         if (collision.collider.CompareTag("Enemy"))
         {
-            OnHitEnemy();
+            OnHitEnemy(collision.gameObject);
         }
         else
         {
             
-            OnHitNothing();
+            OnHitNothing(collision.gameObject);
         }
     }
 }

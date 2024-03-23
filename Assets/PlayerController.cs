@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Keybinds")][SerializeField] private KeyCode jumpKey = KeyCode.Space;
 
+    [Header("Debug Stuff")]
+    [SerializeField] private GameObject enemyPrefab;
+
     private Rigidbody rb;
 
     private Vector3 moveDirection;
@@ -52,6 +55,16 @@ public class PlayerController : MonoBehaviour
         UpdateCamera();
         InputHandling();
         Look();
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            RaycastHit hit;
+            Physics.Raycast(transform.position, playerCam.forward, out hit, Mathf.Infinity);
+            if (hit.collider != null)
+            {
+                Instantiate(enemyPrefab, hit.point + Vector3.up * 10f, Quaternion.identity);
+            }
+        }
 
         rb.drag = (grounded) ? groundDrag : 0;
     }
