@@ -28,7 +28,7 @@ public class Fireball : SpellMono
         //throw new System.NotImplementedException();
     }
 
-    public override void OnRelease()
+    public override void OnRelease(bool isRightHand)
     {
         Debug.Log("Fireball fired");
         //throw new System.NotImplementedException();
@@ -36,5 +36,7 @@ public class Fireball : SpellMono
         GameObject fireball = Instantiate(ProjectileSupplier.Instance.prefabs["fireball"]);
         fireball.transform.position = main.transform.position + main.transform.forward;
         fireball.GetComponent<Rigidbody>().AddForce(main.transform.forward * 50f, ForceMode.Impulse);
+
+        GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
     }
 }

@@ -8,7 +8,7 @@ public abstract class SpellMono : MonoBehaviour
     public string spellName = "base spell mono";
     public abstract void OnPress();
     public abstract void OnHold();
-    public abstract void OnRelease();
+    public abstract void OnRelease(bool isRightHand);
 }
 
 public class SpellManager : MonoBehaviour

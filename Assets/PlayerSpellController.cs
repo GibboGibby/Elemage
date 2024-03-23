@@ -75,47 +75,76 @@ public class PlayerSpellController : MonoBehaviour
         }
     }
 
-    private void HandleCastingSpells()
+    public void RemoveSpellFromHand(bool isRightHand)
     {
-        if (spellInputEnabled) return;
-
-        if (leftMainSpell == null) return;
-
-        if (Input.GetMouseButtonDown(0))
+        if (isRightHand)
         {
-            // Left Fire
-            leftMainSpell.OnPress();
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            leftMainSpell.OnHold();
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            // Left Release
-            leftMainSpell.OnRelease();
-            Destroy(GetComponent(leftMainSpell.GetType()));
-            leftMainSpell = leftSideSpell;
-            leftSideSpell = null;
-        }
-
-        if (rightMainSpell == null) return;
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            // Right Fire
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            // Right Release
             Destroy(GetComponent(rightMainSpell.GetType()));
             rightMainSpell = rightSideSpell;
             rightSideSpell = null;
         }
+        else
+        {
+            Destroy(GetComponent(leftMainSpell.GetType()));
+            leftMainSpell = leftSideSpell;
+            leftSideSpell = null;
+        }
+    }
 
+    private void HandleCastingSpells()
+    {
+        if (spellInputEnabled) return;
+
+        if (leftMainSpell != null)
+        {
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                // Left Fire
+                leftMainSpell.OnPress();
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                leftMainSpell.OnHold();
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                // Left Release
+                leftMainSpell.OnRelease(false);
+                /*
+                Destroy(GetComponent(leftMainSpell.GetType()));
+                leftMainSpell = leftSideSpell;
+                leftSideSpell = null;
+                */
+            }
+        }
+
+        if (rightMainSpell != null)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                // Right Fire
+                rightMainSpell.OnPress();
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                rightMainSpell.OnHold();
+            }
+
+            if (Input.GetMouseButtonUp(1))
+            {
+                // Right Release
+                /*
+                Destroy(GetComponent(rightMainSpell.GetType()));
+                rightMainSpell = rightSideSpell;
+                rightSideSpell = null;
+                */
+                rightMainSpell.OnRelease(true);
+            }
+        }
     }
 
     void Update()

@@ -151,10 +151,21 @@ public class SpellInputController : MonoBehaviour
             lr.SetPosition(i, positionsMap[currentOrder[i]].transform.position);
         }
 
-        if (holdingMouse)
+        if (holdingMouse && currentOrder.Count > 0)
         {
             Vector3 thing = new Vector3(Input.mousePosition.x, Input.mousePosition.y, canvasDistance);
-            lr.SetPosition(currentOrder.Count, Camera.main.ScreenToWorldPoint(thing));
+            Vector2 newVec = new Vector2(positionsMap[currentOrder.Last()].transform.position.x, positionsMap[currentOrder.Last()].transform.position.y);
+            Vector3 objectInWorld = Camera.main.WorldToScreenPoint(positionsMap[currentOrder.Last()].transform.position);
+            Debug.Log("Distance between mouse and " + transform.parent.name + " is - " + Vector2.Distance(Input.mousePosition, objectInWorld));
+            if (Mathf.Abs(Vector2.Distance(Input.mousePosition, objectInWorld)) > 250f)
+            {
+                lr.positionCount = currentOrder.Count;
+                return;
+            }
+            else
+            {
+                lr.SetPosition(currentOrder.Count, Camera.main.ScreenToWorldPoint(thing));
+            }
         }
     }
 }

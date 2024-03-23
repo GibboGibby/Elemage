@@ -27,12 +27,14 @@ public class Sleep : SpellMono
         Debug.Log("Slept Press");
     }
 
-    public override void OnRelease()
+    public override void OnRelease(bool isRightHand)
     {
         Debug.Log("Slept Release");
 
         GameObject fireball = Instantiate(ProjectileSupplier.Instance.prefabs["sleep"]);
         fireball.transform.position = mainCam.transform.position + mainCam.transform.forward;
         fireball.GetComponent<Rigidbody>().AddForce(mainCam.transform.forward * 10f, ForceMode.Impulse);
+
+        GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
     }
 }
