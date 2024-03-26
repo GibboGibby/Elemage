@@ -58,6 +58,7 @@ public class VoiceController : MonoBehaviour
         actions.Add("fireball", Fireball);
         actions.Add("sleep", Sleep);
         actions.Add("blink", Blink);
+        actions.Add("lightning", Lightning);
         //actions.Add("somnum", Sleep);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
@@ -180,6 +181,12 @@ public class VoiceController : MonoBehaviour
     {
         Debug.Log("This sleep is being called");
         AddSpellToHand("sleep");
+    }
+
+    private void Lightning()
+    {
+        Debug.Log("Lightning is being called");
+        AddSpellToHand("lightning");
     }
 
     private void Blink()

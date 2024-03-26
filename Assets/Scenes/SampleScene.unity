@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -312,6 +312,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1599999492596488702, guid: 82fa13b824726d64aaaee914665aeb76, type: 3}
   m_PrefabInstance: {fileID: 1079103228199445973}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &403271224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403271226}
+  - component: {fileID: 403271225}
+  m_Layer: 0
+  m_Name: SpellEffectController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &403271225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403271224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b8c5ba74154654bbf6197c46245a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gibDict:
+    dictItems: []
+--- !u!4 &403271226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403271224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.399974, y: 3.1800003, z: 5.0700116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &459258175
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 16.7}
+  m_AnchoredPosition: {x: 0, y: 16.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633611425
@@ -1460,6 +1506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyTest
       objectReference: {fileID: 0}
+    - target: {fileID: 4991306741532257771, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3598483
@@ -1523,3 +1573,4 @@ SceneRoots:
   - {fileID: 459258177}
   - {fileID: 8597336882943207340}
   - {fileID: 557568362}
+  - {fileID: 403271226}
