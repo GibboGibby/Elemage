@@ -58,7 +58,8 @@ public class VoiceController : MonoBehaviour
         actions.Add("fireball", Fireball);
         actions.Add("sleep", Sleep);
         actions.Add("blink", Blink);
-        actions.Add("lightning", Lightning);
+        actions.Add("lightning orb", Lightning);
+        actions.Add("lightning bolt", LightningBolt);
         //actions.Add("somnum", Sleep);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
@@ -186,7 +187,12 @@ public class VoiceController : MonoBehaviour
     private void Lightning()
     {
         Debug.Log("Lightning is being called");
-        AddSpellToHand("lightning");
+        AddSpellToHand("lightning_orb");
+    }
+
+    private void LightningBolt()
+    {
+        AddSpellToHand("lightning_bolt");
     }
 
     private void Blink()

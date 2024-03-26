@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             RaycastHit hit;
-            Physics.Raycast(transform.position, playerCam.forward, out hit, Mathf.Infinity);
+            Physics.Raycast(playerCam.position, playerCam.forward, out hit, Mathf.Infinity);
             if (hit.collider != null)
             {
-                Instantiate(enemyPrefab, hit.point + Vector3.up * 10f, Quaternion.identity);
+                Instantiate(enemyPrefab, hit.point + Vector3.up * 1.5f, Quaternion.identity);
             }
         }
 

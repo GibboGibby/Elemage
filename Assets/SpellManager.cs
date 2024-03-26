@@ -19,7 +19,8 @@ public class SpellManager : MonoBehaviour
         {"fireball", new Fireball() },
         {"sleep", new Sleep() },
         {"blink", new Blink() },
-        {"lightning", new Lightning() }
+        {"lightning_orb", new LightningOrb() },
+        {"lightning_bolt", new LightningBolt() }
     };
 
 
@@ -43,10 +44,16 @@ public class SpellManager : MonoBehaviour
             {1,0,0}
         }, true)},
 
-        { "lightning", new SpellShape(new int[,]{
-            {6,5,0},
-            {0,4,3},
-            {0,2,1}
+        { "lightning_orb", new SpellShape(new int[,]{
+            {9,8,6},
+            {7,5,3},
+            {4,2,1}
+        }, true)},
+
+        { "lightning_bolt", new SpellShape(new int[,]{
+            {5,3,0},
+            {4,2,0},
+            {0,0,1}
         }, true)},
 
 

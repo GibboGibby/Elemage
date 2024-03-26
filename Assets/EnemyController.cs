@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
-    float health = 10f;
+    [SerializeField] private float health = 10f;
     private Rigidbody rb;
     void Start()
     {
