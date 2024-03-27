@@ -41,10 +41,12 @@ public class LightningBolt : SpellMono
                 if (colliders == null) break;
                 GameObject temp = colliders[0].gameObject;
                 float maxDist = 9999f;
+                bool foundAnyEnemies = false;
                 foreach (Collider collider in colliders)
                 {
                     if (collider.gameObject.CompareTag("Enemy") && collider.gameObject != currentTarget && !objectsHit.Contains(collider.gameObject))
                     {
+                        foundAnyEnemies = true;
                         //collider.gameObject.GetComponent<EnemyController>().EnemyHit(falloffDamage);
                         float curDist = Vector3.Distance(currentTarget.transform.position, collider.gameObject.transform.position);
                         if (curDist < maxDist)
@@ -54,7 +56,7 @@ public class LightningBolt : SpellMono
                         }
                     }
                 }
-
+                if (!foundAnyEnemies) continue;
                 temp.gameObject.GetComponent<EnemyController>().EnemyHit(falloffDamage);
                 objectsHit.Add(temp);
                 Debug.DrawLine(currentTarget.transform.position, temp.transform.position, Color.red, 100f);
