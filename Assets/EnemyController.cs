@@ -20,6 +20,20 @@ public enum EnemyState
     LostTarget
 }
 
+[System.Serializable]
+struct MyTransform
+{
+    public MyTransform(Vector3 pos, Quaternion rot)
+    {
+        Position = pos;
+        Rotation = rot;
+    }
+    [SerializeField]
+    public Vector3 Position;
+    [SerializeField]
+    public Quaternion Rotation;
+}
+
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -28,37 +42,74 @@ public class EnemyController : MonoBehaviour
     [SerializeField] EnemyState currentState = EnemyState.Idle;
     [SerializeField] private float attackDistance = 2f;
 
-    [SerializeField] private Transform[] patrolPath;
+    
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform test;
     private Rigidbody rb;
     private int pathValue = 0;
-    private float alertMeter;
+    
     [Header("Investigating Stats")]
     [SerializeField] private float alertPerSecond = 40f;
     [SerializeField] private float maxAlert = 105f;
     [SerializeField] private float timeForAlertDecay = 2f;
     [SerializeField] private float alertDecayAmount = 30f;
+    [Header("Attack Stats")]
+    [SerializeField] private float attackRange = 2f;
+    [SerializeField] private float attackDamage = 5f;
+    [SerializeField] private float totalAttackTime = 1.5f;
+
+    [Header("Misc")]
+    [SerializeField] private float enemyFov = 60f;
+    [SerializeField] private float maxViewDist = 50f;
+    private float enemyFovRad;
+    [SerializeField] private bool drawFov;
+    [SerializeField] private bool drawMaxViewDist;
+    [SerializeField] private Transform eyePos;
+    [SerializeField] private float lerpSpeed;
+
+    [Header("Gameplay Stuff")]
+    [SerializeField] private float alertMeter;
+    [SerializeField] private List<MyTransform> patrolPath = new List<MyTransform>();
+    private Transform playerTransform;
 
     private Vector3 targetLastKnown = Vector3.zero;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        if (patrolPath.Length == 0)
+        if (patrolPath.Count == 0)
         {
-            patrolPath = new Transform[1];
-            patrolPath[0] = transform;
+            patrolPath.Add(new MyTransform(transform.position, transform.rotation));
         }
         else
         {
-            transform.position = patrolPath[0].position;
-            transform.rotation = patrolPath[0].rotation;
-        }    
+            transform.position = patrolPath[0].Position;
+            transform.rotation = patrolPath[0].Rotation;
+        }
+
+        playerTransform = GameManager.Instance.GetPlayer().transform;
+    }
+
+    private void DrawFov()
+    {
+        Vector3 left = Quaternion.AngleAxis(-enemyFov / 2, Vector3.up) * transform.forward;
+        Vector3 right = Quaternion.AngleAxis(enemyFov / 2, Vector3.up) * transform.forward;
+        Debug.DrawLine(eyePos.position, eyePos.position + left * 10f, Color.red);
+        Debug.DrawLine(eyePos.position, eyePos.position + right * 10f, Color.red);
+    }
+
+    private void DrawViewDist()
+    {
+        Debug.DrawLine(eyePos.position, eyePos.position + transform.forward * maxViewDist, Color.green);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (drawFov)
+            DrawFov();
+
+        if (drawMaxViewDist)
+            DrawViewDist();
         // Simple little state machine
         switch (currentState)
         {
@@ -83,12 +134,41 @@ public class EnemyController : MonoBehaviour
 
     void Idle()
     {
-        if (patrolPath.Length > 1)
+        Debug.Log("On idle func");
+        if (patrolPath.Count > 1)
         {
 
         }
+        bool targetFound = LookForTarget();
+        if (patrolPath.Count == 1 && !targetFound)
+        {
+            float dist = Vector3.Distance(transform.position, patrolPath[0].Position);
+            if (transform.position != patrolPath[0].Position)
+            {
+                Debug.Log("setting destination");
+                agent.isStopped = false;
+                agent.SetDestination(patrolPath[0].Position);
+            }
+            if (dist < 0.5f)
+            {
+                /*
+                Debug.Log("This is actually called");
+                agent.isStopped = true;
+                transform.position = Vector3.Lerp(transform.position, patrolPath[0].Position, lerpSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, patrolPath[0].Rotation, lerpSpeed * Time.deltaTime);
+                if (dist < 0.01f)
+                {
+                    transform.position = patrolPath[0].Position;
+                    transform.rotation = patrolPath[0].Rotation;
+                }
+                */
 
-        if (LookForTarget())
+                transform.position = patrolPath[0].Position;
+                transform.rotation = patrolPath[0].Rotation;
+            }
+        }
+
+        if (targetFound)
         {
             currentState = EnemyState.Investigating;
             alertMeter = 5f;
@@ -99,12 +179,33 @@ public class EnemyController : MonoBehaviour
     {
         // Check to see if the target is in the field of view of the enemy
         // If they are return true and set the last known position
+        if (playerTransform == null) playerTransform = GameManager.Instance.GetPlayer().transform;
+        if (Vector3.Distance(transform.position, playerTransform.position) > maxViewDist) return false;
+
+        Vector3 enemyToPlayer = (playerTransform.position - transform.position);
+        enemyToPlayer.Normalize();
+        float angle = Mathf.Acos(Vector3.Dot(enemyToPlayer, transform.forward) / enemyToPlayer.magnitude * transform.forward.magnitude);
+        angle = Mathf.Rad2Deg * angle;
+        if (angle < enemyFov / 2f)
+        {
+            //Debug.Log("Player in view");
+            RaycastHit hit;
+            if (Physics.Raycast(eyePos.position, enemyToPlayer, out hit))
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    targetLastKnown = playerTransform.position;
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     private float investTimer = 0f;
     void Investigating()
     {
+        Debug.Log("on invest func");
         if (targetLastKnown != Vector3.zero)
         {
             agent.SetDestination(targetLastKnown);
@@ -112,6 +213,7 @@ public class EnemyController : MonoBehaviour
         if (LookForTarget())
         {
             alertMeter += alertPerSecond * Time.deltaTime;
+            Mathf.Clamp(alertMeter, 0, maxAlert);
             if (alertMeter > maxAlert)
             {
                 currentState = EnemyState.Chase;
@@ -120,28 +222,36 @@ public class EnemyController : MonoBehaviour
         else
         {
             alertMeter -= alertDecayAmount * Time.deltaTime;
-            currentState = EnemyState.Idle;
-            targetLastKnown = Vector3.zero;
+            if (alertMeter <= 0)
+            {
+                currentState = EnemyState.Idle;
+                targetLastKnown = Vector3.zero;
+            }
         }
 
 
     }
 
     private float chaseTimer = 0f;
+    private bool noSpinReset = false;
+    private bool spinDirRight = false;
     void Chase()
     {
-        if (targetLastKnown != Vector3.zero)
-        {
-            agent.SetDestination(targetLastKnown);
-        }
-
-        if (Vector3.Distance(targetLastKnown, transform.position) < attackDistance)
+        Debug.Log("On chase func");
+        
+        bool lookforTarget = LookForTarget();
+        if (Vector3.Distance(targetLastKnown, transform.position) < attackDistance && lookforTarget)
         {
             agent.isStopped = true;
             currentState = EnemyState.Attack;
         }
+        if (targetLastKnown != Vector3.zero)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(targetLastKnown);
+        }
 
-        if (LookForTarget())
+        if (lookforTarget)
         {
             chaseTimer = 0f;
             alertMeter = maxAlert;
@@ -151,22 +261,48 @@ public class EnemyController : MonoBehaviour
             chaseTimer += Time.deltaTime;
             if (chaseTimer > timeForAlertDecay)
             {
-                alertMeter -= alertDecayAmount;
+                alertMeter -= alertDecayAmount * Time.deltaTime;
+                // Start Spinning
+                if (!noSpinReset)
+                {
+                    spinDirRight = Random.value > 0.5f ? true : false;
+                    noSpinReset = true;
+                    agent.isStopped = true;
+                }
+
+                float val = 360 / (maxAlert / alertDecayAmount);
+                val = spinDirRight ? val * 1 : val * -1;
+                transform.Rotate(new Vector3(0f, val * Time.deltaTime, 0f), Space.Self);
+
                 if (alertMeter < 0)
                 {
                     currentState = EnemyState.LostTarget;
+                    noSpinReset = false;
+                    agent.isStopped = false;
                 }
             }
         }
     }
-
+    private float attackTimer = 0f;
     void Attack()
     {
+        Debug.Log("On attack func");
         // Deal Damage to Player
+        if (attackTimer == 0f)
+            GameManager.Instance.GetPlayer().PlayerHit(5f);
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= totalAttackTime) 
+            currentState = EnemyState.Chase;
+        // Instead of dealing instant damage do a swing with a collider and check if it hits the player
+        // That way for ranged can do a bullet (maybe if the player is a certain range away they shoot)
     }
     void LostTarget()
     {
-
+        Debug.Log("On Target Lost Func");
+        targetLastKnown = Vector3.zero;
+        agent.isStopped = true;
+        agent.SetDestination(patrolPath[0].Position);
+        currentState = EnemyState.Idle;
     }
 
     public void EnemyHit(float damage)

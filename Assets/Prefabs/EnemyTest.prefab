@@ -160,6 +160,13 @@ MonoBehaviour:
   maxAlert: 105
   timeForAlertDecay: 0
   alertDecayAmount: 40
+  attackRange: 2
+  attackDamage: 5
+  totalAttackTime: 1.5
+  enemyFov: 60
+  maxViewDist: 50
+  drawFov: 0
+  eyePos: {fileID: 7712342513513639840}
 --- !u!195 &6639867218300223256
 NavMeshAgent:
   m_ObjectHideFlags: 0

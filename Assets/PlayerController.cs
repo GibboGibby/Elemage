@@ -130,4 +130,9 @@ public class PlayerController : MonoBehaviour
     {
 
     }
+
+    public void PlayerHit(float damage)
+    {
+
+    }
 }
