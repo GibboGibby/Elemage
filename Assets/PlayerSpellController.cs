@@ -70,8 +70,8 @@ public class PlayerSpellController : MonoBehaviour
             rightHandCanvas.SetActive(false);
             leftHandCanvas.SetActive(false);
             voiceController.StopKeywordRecognizer();
-            leftHandCanvas.transform.GetChild(0).GetComponent<SpellInputController>().GetCurrentOrder().Clear();
-            rightHandCanvas.transform.GetChild(0).GetComponent<SpellInputController>().GetCurrentOrder().Clear();
+            leftHandCanvas.transform.GetChild(0).GetComponent<SpellInputController>().ResetOrder();
+            rightHandCanvas.transform.GetChild(0).GetComponent<SpellInputController>().ResetOrder();
         }
     }
 

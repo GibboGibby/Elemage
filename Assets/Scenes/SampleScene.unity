@@ -584,6 +584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5410383504596309323}
+  selectedColor: {r: 1, g: 0.5039347, b: 0, a: 1}
+  unselectedColor: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
 --- !u!4 &621932593
 Transform:
   m_ObjectHideFlags: 0
@@ -1567,7 +1569,7 @@ PrefabInstance:
       objectReference: {fileID: 106534746}
     - target: {fileID: 6109994981881507078, guid: 07dc5d9081030f649af76573617efc48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.615146
+      value: -24.8
       objectReference: {fileID: 0}
     - target: {fileID: 6109994981881507078, guid: 07dc5d9081030f649af76573617efc48, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1575,7 +1577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6109994981881507078, guid: 07dc5d9081030f649af76573617efc48, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.62818
+      value: -17.9
       objectReference: {fileID: 0}
     - target: {fileID: 6109994981881507078, guid: 07dc5d9081030f649af76573617efc48, type: 3}
       propertyPath: m_LocalRotation.w

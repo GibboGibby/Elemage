@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance {get; private set;}
     [SerializeField] private PlayerController player;
+    [SerializeField] private Color selectedColor;
+    [SerializeField] private Color unselectedColor;
     // Start is called before the first frame update
     void Awake()
     {
@@ -37,5 +39,14 @@ public class GameManager : MonoBehaviour
     public PlayerController GetPlayer()
     {
         return player;
+    }
+
+    public Color SelectedColor()
+    {
+        return selectedColor;
+    }
+    public Color UnselectedColor()
+    {
+        return unselectedColor;
     }
 }

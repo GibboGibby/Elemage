@@ -18,7 +18,7 @@ public class SleepProjectile : ProjectileBase
 
     public override void OnHitEnemy(GameObject enemy)
     {
-        Debug.Log("Specifically fireball has hit an enemy");
+        Debug.Log("Specifically sleep has hit an enemy");
         enemy.GetComponent<EnemyController>().EnemySleep();
         Destroy(gameObject);
     }

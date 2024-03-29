@@ -89,6 +89,7 @@ public class SpellInputController : MonoBehaviour
                     }
 
                     currentOrder.Add(positions[i].pos);
+                    positions[i].image.color = GameManager.Instance.SelectedColor();
                 }
             }
             
@@ -96,7 +97,7 @@ public class SpellInputController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && Input.GetKey(resetKey))
         {
-            currentOrder.Clear();
+            ResetOrder();
         }
 
         if (currentOrder.Count > 1)
@@ -119,6 +120,11 @@ public class SpellInputController : MonoBehaviour
     public void ResetOrder()
     {
         currentOrder.Clear();
+        for (int i = 0; i < positions.Count; i++)
+        {
+            Debug.Log("Clearing position " + i);
+            positions[i].image.color = GameManager.Instance.UnselectedColor();
+        }
     }
 
     public void PositionHovered(SpellShape.Position pos)
@@ -139,6 +145,7 @@ public class SpellInputController : MonoBehaviour
         }
         
         currentOrder.Add(pos);
+        positionsMap[pos].color = GameManager.Instance.SelectedColor();
 
     }
 

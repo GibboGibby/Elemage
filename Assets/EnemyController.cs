@@ -17,7 +17,8 @@ public enum EnemyState
     Investigating,
     Chase,
     Attack,
-    LostTarget
+    LostTarget,
+    Dead
 }
 
 [System.Serializable]
@@ -128,13 +129,15 @@ public class EnemyController : MonoBehaviour
             case EnemyState.LostTarget:
                 LostTarget();
                 break;
-
+            case EnemyState.Dead:
+                return;
         }
     }
 
+    bool idleResetDone = false;
     void Idle()
     {
-        Debug.Log("On idle func");
+        //Debug.Log("On idle func");
         if (patrolPath.Count > 1)
         {
 
@@ -145,11 +148,11 @@ public class EnemyController : MonoBehaviour
             float dist = Vector3.Distance(transform.position, patrolPath[0].Position);
             if (transform.position != patrolPath[0].Position)
             {
-                Debug.Log("setting destination");
+                //Debug.Log("setting destination");
                 agent.isStopped = false;
                 agent.SetDestination(patrolPath[0].Position);
             }
-            if (dist < 0.5f)
+            if (dist < 0.5f && !idleResetDone)
             {
                 /*
                 Debug.Log("This is actually called");
@@ -162,7 +165,7 @@ public class EnemyController : MonoBehaviour
                     transform.rotation = patrolPath[0].Rotation;
                 }
                 */
-
+                idleResetDone = true;
                 transform.position = patrolPath[0].Position;
                 transform.rotation = patrolPath[0].Rotation;
             }
@@ -171,6 +174,7 @@ public class EnemyController : MonoBehaviour
         if (targetFound)
         {
             currentState = EnemyState.Investigating;
+            idleResetDone = false;
             alertMeter = 5f;
         }
     }
@@ -205,7 +209,8 @@ public class EnemyController : MonoBehaviour
     private float investTimer = 0f;
     void Investigating()
     {
-        Debug.Log("on invest func");
+        //Debug.Log("on invest func");
+        
         if (targetLastKnown != Vector3.zero)
         {
             agent.SetDestination(targetLastKnown);
@@ -237,7 +242,7 @@ public class EnemyController : MonoBehaviour
     private bool spinDirRight = false;
     void Chase()
     {
-        Debug.Log("On chase func");
+        //Debug.Log("On chase func");
         
         bool lookforTarget = LookForTarget();
         if (Vector3.Distance(targetLastKnown, transform.position) < attackDistance && lookforTarget)
@@ -286,7 +291,7 @@ public class EnemyController : MonoBehaviour
     private float attackTimer = 0f;
     void Attack()
     {
-        Debug.Log("On attack func");
+        //Debug.Log("On attack func");
         // Deal Damage to Player
         if (attackTimer == 0f)
             GameManager.Instance.GetPlayer().PlayerHit(5f);
@@ -298,7 +303,7 @@ public class EnemyController : MonoBehaviour
     }
     void LostTarget()
     {
-        Debug.Log("On Target Lost Func");
+        //Debug.Log("On Target Lost Func");
         targetLastKnown = Vector3.zero;
         agent.isStopped = true;
         agent.SetDestination(patrolPath[0].Position);
@@ -317,7 +322,12 @@ public class EnemyController : MonoBehaviour
     public void EnemySleep()
     {
         rb.freezeRotation = false;
-        this.enabled = false;
-        GetComponent<Collider>().enabled = false;
+        //this.enabled = false;
+        //GetComponent<Collider>().enabled = false;
+        agent.isStopped = true;
+        agent.enabled = false;
+        
+        transform.position += new Vector3(0f, 1.25f, 0f);
+        GetComponent<EnemyController>().enabled = false;
     }
 }
