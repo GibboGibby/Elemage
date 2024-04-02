@@ -5,6 +5,8 @@ using UnityEngine;
 public class Fireball : SpellMono
 {
     // Start is called before the first frame update
+
+    //https://www.youtube.com/watch?v=5Mw6NpSEb2o Idea for Fire Particle
     private Camera main;
 
     public Fireball()

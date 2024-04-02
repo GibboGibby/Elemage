@@ -5,12 +5,18 @@ using UnityEngine;
 
 public class LightningBolt : SpellMono
 {
-
+    // https://www.youtube.com/watch?v=NMTXHnsxgss Lightning Effect
+    // https://www.patreon.com/posts/vfx-breakdown-71191108 Text Instructions ^^
     private RaycastBase raycaster = new RaycastBase();
     private float range = 20f;
     private float mainDamage = 5f;
     private float falloffDamage = 2f;
     private int maxBounces = 3;
+
+    public LightningBolt()
+    {
+        spellName = "Lightning Bolt";
+    }
     public override void OnHold()
     {
         

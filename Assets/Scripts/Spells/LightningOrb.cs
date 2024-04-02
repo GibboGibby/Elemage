@@ -5,11 +5,18 @@ using UnityEngine;
 
 public class LightningOrb : SpellMono
 {
+    // https://www.youtube.com/watch?v=NMTXHnsxgss Lightning Effect
+    // https://www.patreon.com/posts/vfx-breakdown-71191108 Text Instructions ^^
 
     private RaycastBase raycaster = new RaycastBase();
     private float range = 10f;
     private float mainDamage = 5f;
     private float falloffDamage = 3f;
+
+    public LightningOrb()
+    {
+        spellName = "Lightning Orb";
+    }
     public override void OnHold()
     {
         

@@ -179,4 +179,22 @@ public class PlayerSpellController : MonoBehaviour
             if (rightSideSpell != null) Debug.Log("Right hand side is " + rightSideSpell.GetType().Name + " with a spell name of " + rightSideSpell.spellName);
         }
     }
+    /// <summary>
+    /// Returns the spell names of the spells currently selected
+    /// In the order of
+    /// 1. Left Main Spell
+    /// 2. Left Side Spell
+    /// 3. Right Main Spell
+    /// 4. Right Side Spell
+    /// </summary>
+    /// <returns></returns>
+    public string[] GetSpells()
+    {
+        string[] spells = new string[4];
+        spells[0] = (leftMainSpell != null) ? leftMainSpell.spellName : "";
+        spells[1] = (leftSideSpell != null) ? leftSideSpell.spellName : "";
+        spells[2] = (rightMainSpell != null) ? rightMainSpell.spellName : "";
+        spells[3] = (rightSideSpell != null) ? rightSideSpell.spellName : "";
+        return spells;
+    }
 }
