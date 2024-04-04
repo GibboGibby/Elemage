@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform orientation;
 
     [SerializeField] private float airMultiplier;
+    private float health;
+    [SerializeField] private float maxHealth;
+    
 
     private Quaternion initialRot;
 
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
@@ -98,6 +102,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     private void Look()
     {
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
@@ -133,6 +146,10 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerHit(float damage)
     {
-
+        health -= damage;
+        if (health <= 0)
+        {
+            Debug.Log("Game Over");
+        }
     }
 }

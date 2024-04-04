@@ -157,6 +157,7 @@ public class PlayerSpellController : MonoBehaviour
             if (Input.GetKey(KeyCode.Q))
             {
                 //Swap Left Hand Spells
+                if (leftSideSpell == null) return;
                 SpellMono temp = leftMainSpell;
                 leftMainSpell = leftSideSpell;
                 leftSideSpell = temp;
@@ -164,6 +165,7 @@ public class PlayerSpellController : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 //Swap Right Hand Spell
+                if (rightSideSpell == null) return;
                 SpellMono temp = rightMainSpell;
                 rightMainSpell = rightSideSpell;
                 rightSideSpell = temp;

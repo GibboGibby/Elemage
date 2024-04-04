@@ -42,6 +42,7 @@ public class SpellInputController : MonoBehaviour
         {
             positionsMap.Add(positions[i].pos, positions[i].image);
         }
+        ResetOrder();
     }
 
     private void LateUpdate()

@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float alertDecayAmount = 30f;
     [Header("Attack Stats")]
     [SerializeField] private float attackRange = 2f;
-    [SerializeField] private float attackDamage = 5f;
+    [SerializeField] private float attackDamage = 25f;
     [SerializeField] private float totalAttackTime = 1.5f;
 
     [Header("Misc")]
@@ -71,18 +71,24 @@ public class EnemyController : MonoBehaviour
     [Header("Gameplay Stuff")]
     [SerializeField] private float alertMeter;
     [SerializeField] private List<MyTransform> patrolPath = new List<MyTransform>();
+    [SerializeField] private List<Transform> publicPatrolPath;
     private Transform playerTransform;
 
     private Vector3 targetLastKnown = Vector3.zero;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        if (patrolPath.Count == 0)
+        if (publicPatrolPath.Count == 0)
         {
             patrolPath.Add(new MyTransform(transform.position, transform.rotation));
         }
         else
         {
+            patrolPath[0] = new MyTransform(publicPatrolPath[0].position, publicPatrolPath[0].rotation);
+            for (int i = 1; i < publicPatrolPath.Count; i++)
+            {
+                patrolPath.Add(new MyTransform(publicPatrolPath[i].position, publicPatrolPath[i].rotation));
+            }
             transform.position = patrolPath[0].Position;
             transform.rotation = patrolPath[0].Rotation;
         }
@@ -137,12 +143,21 @@ public class EnemyController : MonoBehaviour
     bool idleResetDone = false;
     void Idle()
     {
-        //Debug.Log("On idle func");
-        if (patrolPath.Count > 1)
-        {
-
-        }
         bool targetFound = LookForTarget();
+        //Debug.Log("On idle func");
+        if (patrolPath.Count > 1 && !targetFound)
+        {
+            agent.destination = patrolPath[pathValue].Position;
+            if (Mathf.Abs(Vector3.Distance(transform.position, patrolPath[pathValue].Position)) < 0.3f)
+            {
+                pathValue++;
+                if (pathValue > patrolPath.Count-1)
+                {
+                    pathValue = 0;
+                }
+            }
+        }
+        
         if (patrolPath.Count == 1 && !targetFound)
         {
             float dist = Vector3.Distance(transform.position, patrolPath[0].Position);
@@ -294,10 +309,13 @@ public class EnemyController : MonoBehaviour
         //Debug.Log("On attack func");
         // Deal Damage to Player
         if (attackTimer == 0f)
-            GameManager.Instance.GetPlayer().PlayerHit(5f);
+            GameManager.Instance.GetPlayer().PlayerHit(attackDamage);
         attackTimer += Time.deltaTime;
-        if (attackTimer >= totalAttackTime) 
+        if (attackTimer >= totalAttackTime)
+        {
             currentState = EnemyState.Chase;
+            attackTimer = 0f;
+        }
         // Instead of dealing instant damage do a swing with a collider and check if it hits the player
         // That way for ranged can do a bullet (maybe if the player is a certain range away they shoot)
     }
