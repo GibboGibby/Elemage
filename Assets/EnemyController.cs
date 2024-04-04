@@ -11,6 +11,8 @@ using UnityEngine.AI;
  *  - Attack (If they reach the player they will attack)
  *  - LostTarget (If the target is lost they will patrol around their last known location for a bit before returning back to idle)
 */
+
+// https://www.youtube.com/watch?v=NXXc9xXzqnk for seeing enemies through walls
 public enum EnemyState
 {
     Idle,

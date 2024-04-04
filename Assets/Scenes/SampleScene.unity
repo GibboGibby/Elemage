@@ -542,7 +542,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 161656405}
-  m_VersionIndex: 4451
+  m_VersionIndex: 4454
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1753,6 +1753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1837,6 +1838,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &753801172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,7 +2574,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2737,7 +2761,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1748702406}
-  m_VersionIndex: 4162
+  m_VersionIndex: 4165
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3233,7 +3257,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7113,7 +7137,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1555078539}
-  m_VersionIndex: 7952
+  m_VersionIndex: 7955
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -7141,50 +7165,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: test
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: drawFov
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: enemyFov
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: maxViewDist
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: attackDamage
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: drawMaxViewDist
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: patrolPath.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: publicPatrolPath.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: publicPatrolPath.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: publicPatrolPath.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: publicPatrolPath.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4991306741532257771, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
       propertyPath: m_Name
       value: EnemyTest (1)
@@ -7605,7 +7585,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7722,7 +7702,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1792675594}
-  m_VersionIndex: 2433
+  m_VersionIndex: 2436
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -13826,6 +13806,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3405148686627835149, guid: c280bb94c41377f4fbad94660375c6e1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25a9fb42d361f46ad89221f6d301e96e, type: 2}
     - target: {fileID: 4286986000604104500, guid: c280bb94c41377f4fbad94660375c6e1, type: 3}
       propertyPath: m_Name
       value: Doorway
@@ -13836,7 +13820,7 @@ PrefabInstance:
       objectReference: {fileID: 607198176}
     - target: {fileID: 5428036165098327057, guid: c280bb94c41377f4fbad94660375c6e1, type: 3}
       propertyPath: m_VersionIndex
-      value: 3174
+      value: 3177
       objectReference: {fileID: 0}
     - target: {fileID: 8539178018661075204, guid: c280bb94c41377f4fbad94660375c6e1, type: 3}
       propertyPath: m_Mesh
@@ -13939,6 +13923,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7133955337429629102, guid: 07dc5d9081030f649af76573617efc48, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f4ae66ae1b086b4bbc5e94450beae1b, type: 2}
     - target: {fileID: 7267260447411374378, guid: 07dc5d9081030f649af76573617efc48, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -13994,34 +13982,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: test
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: drawFov
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: enemyFov
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: maxViewDist
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: drawMaxViewDist
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: patrolPath.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
-      propertyPath: publicPatrolPath.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
       propertyPath: publicPatrolPath.Array.data[0]
       value: 

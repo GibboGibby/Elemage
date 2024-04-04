@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8f4ae66ae1b086b4bbc5e94450beae1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,7 +153,6 @@ MonoBehaviour:
   health: 10
   currentState: 0
   attackDistance: 2
-  patrolPath: []
   agent: {fileID: 6639867218300223256}
   test: {fileID: 0}
   alertPerSecond: 40
@@ -161,12 +160,17 @@ MonoBehaviour:
   timeForAlertDecay: 0
   alertDecayAmount: 40
   attackRange: 2
-  attackDamage: 5
+  attackDamage: 25
   totalAttackTime: 1.5
   enemyFov: 60
   maxViewDist: 50
-  drawFov: 0
+  drawFov: 1
+  drawMaxViewDist: 1
   eyePos: {fileID: 7712342513513639840}
+  lerpSpeed: 0
+  alertMeter: 0
+  patrolPath: []
+  publicPatrolPath: []
 --- !u!195 &6639867218300223256
 NavMeshAgent:
   m_ObjectHideFlags: 0
