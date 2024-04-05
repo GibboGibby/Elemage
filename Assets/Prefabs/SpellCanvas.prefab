@@ -1050,6 +1050,7 @@ MonoBehaviour:
   - pos: 6
     image: {fileID: 6247097080572032278}
   canvasDistance: 10
+  resetKey: 101
 --- !u!120 &3696602971140531212
 LineRenderer:
   serializedVersion: 2

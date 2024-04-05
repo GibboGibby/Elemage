@@ -167,7 +167,7 @@ public class SpellInputController : MonoBehaviour
             Vector2 newVec = new Vector2(positionsMap[currentOrder.Last()].transform.position.x, positionsMap[currentOrder.Last()].transform.position.y);
             Vector3 objectInWorld = Camera.main.WorldToScreenPoint(positionsMap[currentOrder.Last()].transform.position);
             //Debug.Log("Distance between mouse and " + transform.parent.name + " is - " + Vector2.Distance(Input.mousePosition, objectInWorld));
-            if (Mathf.Abs(Vector2.Distance(Input.mousePosition, objectInWorld)) > 250f)
+            if (Mathf.Abs(Vector2.Distance(Input.mousePosition, objectInWorld)) > 100f)
             {
                 lr.positionCount = currentOrder.Count;
                 return;

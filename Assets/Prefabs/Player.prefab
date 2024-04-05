@@ -100,7 +100,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2d3dcfb450523c643b1dd601e44e5b78, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   playerCam: {fileID: 1134105281787646965}
   orientation: {fileID: 1228425390619346152}
   airMultiplier: 0.35
+  maxHealth: 0
   moveSpeed: 20
   groundDrag: 1
   maxCameraAngleOnMove: 300
@@ -171,6 +172,7 @@ MonoBehaviour:
   sensitivity: 50
   sensMultiplier: 1
   jumpKey: 32
+  enemyPrefab: {fileID: 0}
 --- !u!54 &1763944516391114109
 Rigidbody:
   m_ObjectHideFlags: 0
