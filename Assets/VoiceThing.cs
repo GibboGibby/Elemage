@@ -60,6 +60,7 @@ public class VoiceController : MonoBehaviour
         actions.Add("blink", Blink);
         actions.Add("lightning orb", Lightning);
         actions.Add("lightning bolt", LightningBolt);
+        actions.Add("dark vision", DarkVision);
         //actions.Add("somnum", Sleep);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
@@ -198,6 +199,11 @@ public class VoiceController : MonoBehaviour
     private void Blink()
     {
         AddSpellToHand("blink");
+    }
+
+    private void DarkVision()
+    {
+        AddSpellToHand("dark_vision");
     }
 
 }

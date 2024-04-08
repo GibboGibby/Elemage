@@ -30,8 +30,10 @@ public class LightningBolt : SpellMono
     public override void OnRelease(bool isRightHand)
     {
         //RaycastHit hit;
-        if (RaycastBase.AbilityRaycast("Enemy", 20f, out RaycastHit hit))
+        bool rayHit = false;
+        if (RaycastBase.AbilityRaycast("EnemyTwo", 20f, out RaycastHit hit))
         {
+            rayHit = true;
             Debug.Log("Enemy found and firing lightning bolt at");
             Debug.Log(hit.collider.gameObject.name);
             
@@ -69,8 +71,27 @@ public class LightningBolt : SpellMono
                 currentTarget = temp;
 
             }
+
+            GameObject lightning = Instantiate(ProjectileSupplier.Instance.prefabs["lightning_bolt"]);
+            LineRenderer lr = lightning.GetComponent<LineRenderer>();
+            lr.positionCount = 1;
+            lr.SetPosition(0, transform.position);
+            for (int i = 0; i < objectsHit.Count; i++)
+            {
+                lr.positionCount++;
+                lr.SetPosition(i + 1, objectsHit[i].transform.position);
+            }
+            StartCoroutine(LightningBoltStuff(isRightHand, lightning));
         }
 
-        GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
+        if (!rayHit)
+            GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
+    }
+
+    private IEnumerator LightningBoltStuff(bool rightHand, GameObject lightningBolt)
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<PlayerSpellController>().RemoveSpellFromHand(rightHand);
+        Destroy(lightningBolt);
     }
 }

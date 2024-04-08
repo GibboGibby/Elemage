@@ -26,5 +26,6 @@ public class FireballProjectile : ProjectileBase
     public override void OnHitNothing(GameObject enemy)
     {
         Debug.Log("Specifically fireball has hit nothing");
+        Destroy(gameObject);
     }
 }

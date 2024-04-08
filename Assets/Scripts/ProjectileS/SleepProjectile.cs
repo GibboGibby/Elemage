@@ -26,5 +26,8 @@ public class SleepProjectile : ProjectileBase
     public override void OnHitNothing(GameObject enemy)
     {
         Debug.Log("Specifically fireball has hit nothing");
+        Destroy(gameObject);
     }
+
+    
 }

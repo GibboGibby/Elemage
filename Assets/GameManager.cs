@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color unselectedColor;
+
+    [SerializeField] private ScriptableRendererFeature darkVisionOne;
+    [SerializeField] private ScriptableRendererFeature darkVisionTwo;
+    [SerializeField] private UniversalRenderPipelineAsset UniversalRenderPipelineAsset;
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,6 +28,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetDarkVision(bool val)
+    {
+        //UniversalRenderPipelineAsset.
+        darkVisionOne.SetActive(val);
+        darkVisionTwo.SetActive(val);
+    }
+
     private void Start()
     {
         if (player == null)
@@ -33,7 +46,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (darkVisionOne.isActive)
+                SetDarkVision(false);
+            else
+                SetDarkVision(true);
+        }
     }
 
     public PlayerController GetPlayer()

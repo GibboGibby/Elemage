@@ -123,7 +123,7 @@ public class SpellInputController : MonoBehaviour
         currentOrder.Clear();
         for (int i = 0; i < positions.Count; i++)
         {
-            Debug.Log("Clearing position " + i);
+            //Debug.Log("Clearing position " + i);
             positions[i].image.color = GameManager.Instance.UnselectedColor();
         }
     }

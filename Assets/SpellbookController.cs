@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,9 @@ public class SpellbookController : MonoBehaviour
     [SerializeField] private Image img2;
     private int maxPages;
     private int currentPage = 0;
+
+    private bool spellbookOpen = false;
+
     [SerializeField] private bool doublePages = false;
     void Start()
     {
@@ -25,6 +30,20 @@ public class SpellbookController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (spellbookOpen)
+            SpellbookOpen();
+        else
+            SpellbookClosed();
+    }
+
+    private void SpellbookOpen()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            spellbookOpen = false;
+            HideBook();
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             currentPage = ClampPage(currentPage - 1);
@@ -35,6 +54,15 @@ public class SpellbookController : MonoBehaviour
         {
             currentPage = ClampPage(currentPage + 1);
             ChangePage();
+        }
+    }
+
+    private void SpellbookClosed()
+    {
+        if (Input.GetKeyDown (KeyCode.Tab))
+        {
+            spellbookOpen = true;
+            ShowBook();
         }
     }
 
@@ -55,6 +83,28 @@ public class SpellbookController : MonoBehaviour
         {
             img1.sprite = bookImages[currentPage*2];
             img2.sprite = bookImages[currentPage*2+1];
+        }
+    }
+
+    private void ShowBook()
+    {
+        if (doublePages)
+            doubleImg.enabled = true;
+        else
+        {
+            img1.enabled = true;
+            img2.enabled = true;
+        }
+    }
+
+    private void HideBook()
+    {
+        if (doublePages)
+            doubleImg.enabled = false;
+        else
+        {
+            img1.enabled = false;
+            img2.enabled = false;
         }
     }
 }

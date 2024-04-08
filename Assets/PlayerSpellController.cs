@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
@@ -17,6 +18,8 @@ public class PlayerSpellController : MonoBehaviour
     private SpellMono leftSideSpell = null;
     [SerializeField] private SpellMono rightMainSpell = null;
     private SpellMono rightSideSpell = null;
+
+    [SerializeField] private TextMeshProUGUI spellText;
 
     bool spellInputEnabled = false;
     void Start()
@@ -36,13 +39,25 @@ public class PlayerSpellController : MonoBehaviour
             if (rightMainSpell == null) rightMainSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
             else if (rightMainSpell != null && rightSideSpell == null) rightSideSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
             else if (rightMainSpell != null && rightSideSpell != null) rightMainSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
+            Debug.Log("Running show spell text coroutine with - " + rightMainSpell.spellName);
+            StartCoroutine(ShowSpellText(rightMainSpell.spellName + " has been cast"));
         }
         else
         {
             if (leftMainSpell == null) leftMainSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
             else if (leftMainSpell != null && leftSideSpell == null) leftSideSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
             else if (leftMainSpell != null && leftSideSpell != null) leftMainSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
+            Debug.Log("Running show spell text coroutine with - " + leftMainSpell.spellName);
+            StartCoroutine(ShowSpellText(leftMainSpell.spellName + " has been cast"));
         }
+        
+    }
+
+    private IEnumerator ShowSpellText(string text)
+    {
+        spellText.text = text;
+        yield return new WaitForSeconds(2.5f);
+        spellText.text = "";
     }
 
     // Update is called once per frame

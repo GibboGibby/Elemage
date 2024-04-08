@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -347,7 +349,16 @@ public class EnemyController : MonoBehaviour
         agent.isStopped = true;
         agent.enabled = false;
         
-        transform.position += new Vector3(0f, 1.25f, 0f);
+        //transform.position += new Vector3(0f, 1.25f, 0f);
+
+        rb.isKinematic = false;
+        Vector3 temp = new Vector3(1f, 0, 1f);
+        temp *= 20f;
+        int bool1 = Random.Range(0, 2);
+        int bool2 = Random.Range(0, 2);
+        if (bool1 == 1) temp.x *= -1f;
+        if (bool2 == 1) temp.z *= -1f;
+        rb.AddForceAtPosition(temp, eyePos.position, ForceMode.Force);
         GetComponent<EnemyController>().enabled = false;
     }
 }

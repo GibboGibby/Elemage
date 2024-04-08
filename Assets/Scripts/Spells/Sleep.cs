@@ -33,7 +33,8 @@ public class Sleep : SpellMono
 
         GameObject fireball = Instantiate(ProjectileSupplier.Instance.prefabs["sleep"]);
         fireball.transform.position = mainCam.transform.position + mainCam.transform.forward;
-        fireball.GetComponent<Rigidbody>().AddForce(mainCam.transform.forward * 10f, ForceMode.Impulse);
+        fireball.GetComponent<Rigidbody>().AddForce(mainCam.transform.forward * 20f, ForceMode.Impulse);
+        fireball.transform.rotation = mainCam.transform.rotation;
 
         GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
     }

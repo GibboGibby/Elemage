@@ -20,7 +20,8 @@ public class SpellManager : MonoBehaviour
         {"sleep", new Sleep() },
         {"blink", new Blink() },
         {"lightning_orb", new LightningOrb() },
-        {"lightning_bolt", new LightningBolt() }
+        {"lightning_bolt", new LightningBolt() },
+        {"dark_vision", new DarkVision() }
     };
 
 
@@ -55,8 +56,12 @@ public class SpellManager : MonoBehaviour
             {4,2,0},
             {0,0,1}
         }, true)},
-
-
+        
+        { "dark_vision", new SpellShape(new int[,]{
+            {0,1,0},
+            {2,0,4},
+            {0,3,0}
+        }, true)},
     };
 
     void Start()
