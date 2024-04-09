@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private ScriptableRendererFeature darkVisionOne;
     [SerializeField] private ScriptableRendererFeature darkVisionTwo;
+    [SerializeField] private ScriptableRendererFeature darkVisionThree;
     [SerializeField] private UniversalRenderPipelineAsset UniversalRenderPipelineAsset;
     // Start is called before the first frame update
     void Awake()
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         //UniversalRenderPipelineAsset.
         darkVisionOne.SetActive(val);
         darkVisionTwo.SetActive(val);
+        darkVisionThree.SetActive(val);
     }
 
     private void Start()

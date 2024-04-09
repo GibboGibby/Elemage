@@ -276,7 +276,11 @@ public class EnemyController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, radius); 
+        Gizmos.DrawWireSphere(transform.position, radius);
+        Vector3 left = Quaternion.AngleAxis(-enemyFov / 2, Vector3.up) * transform.forward;
+        Vector3 right = Quaternion.AngleAxis(enemyFov / 2, Vector3.up) * transform.forward;
+        Gizmos.DrawLine(eyePos.position, eyePos.position + left * 10f);
+        Gizmos.DrawLine(eyePos.position, eyePos.position + right * 10f);
     }
     void Chase()
     {
