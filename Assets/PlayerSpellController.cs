@@ -41,6 +41,7 @@ public class PlayerSpellController : MonoBehaviour
             else if (rightMainSpell != null && rightSideSpell != null) rightMainSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
             Debug.Log("Running show spell text coroutine with - " + rightMainSpell.spellName);
             StartCoroutine(ShowSpellText(rightMainSpell.spellName + " has been cast"));
+            rightHandCanvas.transform.GetChild(0).GetComponent<SpellInputController>().ResetOrder();
         }
         else
         {
@@ -49,8 +50,9 @@ public class PlayerSpellController : MonoBehaviour
             else if (leftMainSpell != null && leftSideSpell != null) leftMainSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
             Debug.Log("Running show spell text coroutine with - " + leftMainSpell.spellName);
             StartCoroutine(ShowSpellText(leftMainSpell.spellName + " has been cast"));
+            leftHandCanvas.transform.GetChild(0).GetComponent<SpellInputController>().ResetOrder();
         }
-        
+
     }
 
     private IEnumerator ShowSpellText(string text)
@@ -94,13 +96,15 @@ public class PlayerSpellController : MonoBehaviour
     {
         if (isRightHand)
         {
-            Destroy(GetComponent(rightMainSpell.GetType()));
+            //Destroy(GetComponent(rightMainSpell.GetType()));
+            Destroy(rightMainSpell);
             rightMainSpell = rightSideSpell;
             rightSideSpell = null;
         }
         else
         {
-            Destroy(GetComponent(leftMainSpell.GetType()));
+            //Destroy(GetComponent(leftMainSpell.GetType()));
+            Destroy(leftMainSpell);
             leftMainSpell = leftSideSpell;
             leftSideSpell = null;
         }

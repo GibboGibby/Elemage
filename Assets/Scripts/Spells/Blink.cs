@@ -11,7 +11,7 @@ public class Blink : SpellMono
     private IEnumerator BlinkCoroutine(Vector3 startPos, Vector3 endPos, bool isRightHand)
     {
         float elapsed = 0f;
-        float totalTime = 0.2f;
+        float totalTime = 0.125f;
 
         while (elapsed <  totalTime)
         {

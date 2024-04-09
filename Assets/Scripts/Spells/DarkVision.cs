@@ -48,7 +48,8 @@ public class DarkVision : SpellMono
     {
         //UniversalRenderPipelineUtils.SetRendererFeatureActive("DarkVisionPartOne", false);
         //UniversalRenderPipelineUtils.SetRendererFeatureActive("DarkVisionPartTwo", false);
-        GameManager.Instance.SetDarkVision(true);
+        GameManager.Instance.SetDarkVision(false);
+        EnemyController.DarkVisionOn = false;
     }
 
     private void StartDarkVision()
@@ -56,6 +57,7 @@ public class DarkVision : SpellMono
         //UniversalRenderPipelineUtils.SetRendererFeatureActive("DarkVisionPartOne", true);
         //UniversalRenderPipelineUtils.SetRendererFeatureActive("DarkVisionPartTwo", true);
         GameManager.Instance.SetDarkVision(true);
+        EnemyController.DarkVisionOn = true;
     }
 
     public override void OnRelease(bool isRightHand)

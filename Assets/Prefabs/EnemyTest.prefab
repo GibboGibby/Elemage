@@ -177,6 +177,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 640
   radius: 20
+  coneMr: {fileID: 5793901008995098393}
+  invis: {fileID: 2100000, guid: 2ada4d1b0e32eb3409e481982db23d9d, type: 2}
+  visionCone: {fileID: 2100000, guid: a6dc84456bb571b4984789205fc9bfa4, type: 2}
 --- !u!195 &6639867218300223256
 NavMeshAgent:
   m_ObjectHideFlags: 0

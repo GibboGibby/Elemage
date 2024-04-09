@@ -41,6 +41,8 @@ struct MyTransform
 
 public class EnemyController : MonoBehaviour
 {
+
+    public static bool DarkVisionOn = false;
     // Start is called before the first frame update
     [Header("Enemy Stats")]
     [SerializeField] private float health = 10f;
@@ -73,6 +75,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform eyePos;
     [SerializeField] private float lerpSpeed;
     [SerializeField] private float lostTargetSpinTime = 1f;
+    
 
     [Header("Gameplay Stuff")]
     [SerializeField] private float alertMeter;
@@ -83,6 +86,11 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Alerting")]
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private float radius;
+
+    [Header("Cone Stuff")]
+    [SerializeField] private MeshRenderer coneMr;
+    [SerializeField] private Material invis;
+    [SerializeField] private Material visionCone;
 
     private Vector3 targetLastKnown = Vector3.zero;
     void Start()
@@ -122,6 +130,15 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (EnemyController.DarkVisionOn)
+        {
+            coneMr.material = visionCone;
+        }
+        else
+        {
+            coneMr.material = invis;
+        }
+
         if (drawFov)
             DrawFov();
 
@@ -264,6 +281,7 @@ public class EnemyController : MonoBehaviour
     public void GetAlerted(Vector3 playerPos)
     {
         targetLastKnown = playerPos;
+        if (currentState != EnemyState.Chase && currentState != EnemyState.Attack) currentState = EnemyState.Chase;
         currentState = EnemyState.Chase;
         alertMeter = maxAlert;
         agent.SetDestination(playerPos);
@@ -287,7 +305,7 @@ public class EnemyController : MonoBehaviour
         //Debug.Log("On chase func");
         
         bool lookforTarget = LookForTarget();
-        if (Vector3.Distance(targetLastKnown, transform.position) < attackDistance && lookforTarget)
+        if (Vector3.Distance(playerTransform.position, transform.position) < attackDistance && lookforTarget)
         {
             agent.isStopped = true;
             currentState = EnemyState.Attack;
@@ -305,7 +323,8 @@ public class EnemyController : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius, enemyMask);
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].CompareTag("Enemy") && colliders[i].GetInstanceID() != GetInstanceID())
+                if (colliders[i].gameObject.GetInstanceID() == gameObject.GetInstanceID()) continue;
+                if (colliders[i].CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy found in the area");
                     colliders[i].GetComponent<EnemyController>().GetAlerted(targetLastKnown);
@@ -344,7 +363,7 @@ public class EnemyController : MonoBehaviour
     private float attackTimer = 0f;
     void Attack()
     {
-        //Debug.Log("On attack func");
+        Debug.Log("On attack func");
         // Deal Damage to Player
         if (attackTimer == 0f)
             GameManager.Instance.GetPlayer().PlayerHit(attackDamage);
@@ -364,6 +383,10 @@ public class EnemyController : MonoBehaviour
     void LostTarget()
     {
         //Debug.Log("On Target Lost Func");
+        if (LookForTarget())
+        {
+            currentState = EnemyState.Investigating;
+        }
         targetLastKnown = Vector3.zero;
         agent.isStopped = true;
         lostTargetgSpinTimer += Time.deltaTime;

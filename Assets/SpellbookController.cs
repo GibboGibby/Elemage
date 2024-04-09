@@ -25,6 +25,10 @@ public class SpellbookController : MonoBehaviour
             maxPages = bookImages.Count;
         else
             maxPages = bookImages.Count / 2;
+
+        doubleImg.enabled = false;
+        img1.enabled = false;
+        img2.enabled = false;
     }
 
     // Update is called once per frame
@@ -68,7 +72,7 @@ public class SpellbookController : MonoBehaviour
 
     private int ClampPage(int newVal)
     {
-        if (newVal > maxPages) return maxPages;
+        if (newVal > maxPages-1) return maxPages-1;
         if (newVal < 0) return 0;
         return newVal;
     }
@@ -88,6 +92,7 @@ public class SpellbookController : MonoBehaviour
 
     private void ShowBook()
     {
+        GameManager.Instance.SetMainUI(false);
         if (doublePages)
             doubleImg.enabled = true;
         else
@@ -99,6 +104,7 @@ public class SpellbookController : MonoBehaviour
 
     private void HideBook()
     {
+        GameManager.Instance.SetMainUI(true);
         if (doublePages)
             doubleImg.enabled = false;
         else

@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScriptableRendererFeature darkVisionTwo;
     [SerializeField] private ScriptableRendererFeature darkVisionThree;
     [SerializeField] private UniversalRenderPipelineAsset UniversalRenderPipelineAsset;
+
+    [Header("UI")]
+    [SerializeField] private GameObject mainUI;
+    [SerializeField] private GameObject gameOverUI;
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,6 +47,8 @@ public class GameManager : MonoBehaviour
         {
             player = GameObject.Find("Player").GetComponent<PlayerController>();
         }
+
+        SetDarkVision(false);
     }
 
     // Update is called once per frame
@@ -69,5 +75,21 @@ public class GameManager : MonoBehaviour
     public Color UnselectedColor()
     {
         return unselectedColor;
+    }
+
+    public void SetMainUI(bool val)
+    {
+        mainUI.SetActive(val);
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0f;
+        mainUI.SetActive(false);
+        gameOverUI.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        player.enabled = false;
+        player.gameObject.GetComponent<PlayerSpellController>().enabled = false;
     }
 }
