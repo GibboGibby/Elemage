@@ -4425,6 +4425,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08cb072512500c3479d2f37b12d4d825, type: 3}
+--- !u!1001 &595752032
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2742466692511219338, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: radius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991306741532257771, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_Name
+      value: EnemyTest (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -60.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -102.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5066419094885255920, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a59d5d3d14a4cb448975ef937a9f67e, type: 3}
 --- !u!43 &607198176
 Mesh:
   m_ObjectHideFlags: 0
@@ -5388,7 +5449,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967609194}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -5410,7 +5471,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 36eb9857961720e49941fb697a169e22, type: 2}
+  m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
 --- !u!4 &967609196
 Transform:
@@ -28375,6 +28436,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1763944516391114109, guid: 07dc5d9081030f649af76573617efc48, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2388088646644320734, guid: 07dc5d9081030f649af76573617efc48, type: 3}
       propertyPath: m_Name
       value: Player
@@ -28593,6 +28658,7 @@ SceneRoots:
   - {fileID: 459258177}
   - {fileID: 8597336882943207340}
   - {fileID: 1541887794}
+  - {fileID: 595752032}
   - {fileID: 1704140596}
   - {fileID: 557568362}
   - {fileID: 403271226}

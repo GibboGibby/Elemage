@@ -16,62 +16,63 @@ public class Fizzle : SpellMono
 
     public override void OnRelease(bool isRightHand)
     {
-        
+        Debug.Log("Fizzle");
+        GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
     }
 }
 
 public class IceBlock : Fizzle
 {
-    IceBlock() { spellName = "Ice Trap"; }
+    public IceBlock() { spellName = "Ice Trap"; }
 }
 
 public class BoxTrap : Fizzle
 {
-    BoxTrap() { spellName = "Box Trap"; }
+    public BoxTrap() { spellName = "Box Trap"; }
 }
 
 public class Silence : Fizzle
 {
-    Silence() { spellName = "Silence"; }
+    public Silence() { spellName = "Silence"; }
 }
 public class BendTime : Fizzle
 {
-    BendTime() { spellName = "Bend Time"; }
+    public BendTime() { spellName = "Bend Time"; }
 }
 public class Tornado : Fizzle
 {
-    Tornado() { spellName = "Tornado"; }
+    public Tornado() { spellName = "Tornado"; }
 }
 
 public class SummonMinion : Fizzle
 {
-    SummonMinion() { spellName = "Summon Minion"; }
+    public SummonMinion() { spellName = "Summon Minion"; }
 }
 public class AlterMind : Fizzle
 {
-    AlterMind() { spellName = "Alter Mind"; }
+    public AlterMind() { spellName = "Alter Mind"; }
 }
 
 public class Abyss : Fizzle
 {
-    Abyss() { spellName = "Abyss"; }
+   public Abyss() { spellName = "Abyss"; }
 }
 
 public class Domino : Fizzle
 {
-    Domino() { spellName = "Domino"; }
+    public Domino() { spellName = "Domino"; }
 }
 
 public class Forcefield : Fizzle
 {
-    Forcefield() { spellName = "Forcefield"; }
+    public Forcefield() { spellName = "Forcefield"; }
 }
 public class Telekinesis : Fizzle
 {
-    Telekinesis() { spellName = "Telekinesis"; }
+    public Telekinesis() { spellName = "Telekinesis"; }
 }
 
 public class WallTrap : Fizzle
 {
-    WallTrap() { spellName = "Wall Trap"; }
+    public WallTrap() { spellName = "Wall Trap"; }
 }

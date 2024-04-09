@@ -61,6 +61,18 @@ public class VoiceController : MonoBehaviour
         actions.Add("lightning orb", Lightning);
         actions.Add("lightning bolt", LightningBolt);
         actions.Add("dark vision", DarkVision);
+        actions.Add("ice block", IceBlock);
+        actions.Add("box trap", BoxTrap);
+        actions.Add("silence", Silence);
+        actions.Add("bend time", BendTime);
+        actions.Add("tornado", Tornado);
+        actions.Add("summon minion", SummonMinion);
+        actions.Add("alter mind", AlterMind);
+        actions.Add("abyss", Abyss);
+        actions.Add("domino", Domino);
+        actions.Add("forcefield", Forcefield);
+        actions.Add("telekinesis", Telekinesis);
+        actions.Add("wall trap", WallTrap);
         //actions.Add("somnum", Sleep);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
@@ -205,5 +217,18 @@ public class VoiceController : MonoBehaviour
     {
         AddSpellToHand("dark_vision");
     }
+
+    private void IceBlock() { AddSpellToHand("ice_block"); }
+    private void BoxTrap() { AddSpellToHand("box_trap"); }
+    private void Silence() { AddSpellToHand("silence"); }
+    private void BendTime() { AddSpellToHand("bend_time"); }
+    private void Tornado() { AddSpellToHand("tornado"); }
+    private void SummonMinion() { AddSpellToHand("summon_minion"); }
+    private void AlterMind() { AddSpellToHand("alter_mind"); }
+    private void Abyss() { AddSpellToHand("abyss"); }
+    private void Domino() { AddSpellToHand("domino"); }
+    private void Forcefield() { AddSpellToHand("forcefield"); }
+    private void Telekinesis() { AddSpellToHand("telekinesis"); }
+    private void WallTrap() { AddSpellToHand("wall_trap"); }
 
 }

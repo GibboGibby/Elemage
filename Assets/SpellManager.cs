@@ -21,7 +21,19 @@ public class SpellManager : MonoBehaviour
         {"blink", new Blink() },
         {"lightning_orb", new LightningOrb() },
         {"lightning_bolt", new LightningBolt() },
-        {"dark_vision", new DarkVision() }
+        {"dark_vision", new DarkVision() },
+        {"ice_block", new IceBlock() },
+        {"box_trap", new BoxTrap() },
+        {"silence", new Silence() },
+        {"bend_time", new BendTime() },
+        {"tornado", new Tornado() },
+        {"summon_minion", new SummonMinion() },
+        {"alter_mind", new AlterMind() },
+        {"abyss", new Abyss() },
+        {"domino", new Domino() },
+        {"forcefield", new Forcefield() },
+        {"telekinesis", new Telekinesis() },
+        {"wall_trap", new WallTrap() },
     };
 
 
@@ -61,6 +73,78 @@ public class SpellManager : MonoBehaviour
             {0,1,0},
             {2,0,4},
             {0,3,0}
+        }, true)},
+
+        { "ice_block", new SpellShape(new int[,]{
+            {0,7,6},
+            {4,1,5},
+            {3,2,0}
+        }, true)},
+
+        { "box_trap", new SpellShape(new int[,]{
+            {1,8,7},
+            {2,0,6},
+            {3,4,5}
+        }, true)},
+
+        { "silence", new SpellShape(new int[,]{
+            {3,2,1},
+            {4,5,6},
+            {9,8,7}
+        }, true)},
+
+        { "bend_time", new SpellShape(new int[,]{
+            {1,2,3},
+            {0,4,0},
+            {5,6,7}
+        }, true)},
+
+        { "tornado", new SpellShape(new int[,]{
+            {1,2,3},
+            {8,9,4},
+            {7,6,5}
+        }, true)},
+
+        { "summon_minion", new SpellShape(new int[,]{
+            {3,0,5},
+            {2,4,6},
+            {1,0,7}
+        }, true)},
+
+        { "alter_mind", new SpellShape(new int[,]{
+            {3,8,9},
+            {2,5,7},
+            {1,6,0}
+        }, true)},
+
+        { "abyss", new SpellShape(new int[,]{
+            {1,0,6},
+            {0,2,0},
+            {5,4,3}
+        }, true)},
+
+        { "domino", new SpellShape(new int[,]{
+            {0,2,0},
+            {1,4,0},
+            {5,0,3}
+        }, true)},
+
+        { "forcefield", new SpellShape(new int[,]{
+            {0,3,0},
+            {2,0,4},
+            {1,6,5}
+        }, true)},
+
+        { "telekinesis", new SpellShape(new int[,]{
+            {4,3,0},
+            {5,2,0},
+            {0,1,0}
+        }, true)},
+
+        { "wall_trap", new SpellShape(new int[,]{
+            {0,3,4},
+            {0,2,0},
+            {5,1,0}
         }, true)},
     };
 

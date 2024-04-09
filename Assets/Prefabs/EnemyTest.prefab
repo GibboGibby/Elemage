@@ -168,9 +168,14 @@ MonoBehaviour:
   drawMaxViewDist: 1
   eyePos: {fileID: 7712342513513639840}
   lerpSpeed: 0
+  lostTargetSpinTime: 2
   alertMeter: 0
   patrolPath: []
   publicPatrolPath: []
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 640
+  radius: 20
 --- !u!195 &6639867218300223256
 NavMeshAgent:
   m_ObjectHideFlags: 0

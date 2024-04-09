@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackDistance = 2f;
 
     
+    
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform test;
     private Rigidbody rb;
@@ -71,12 +72,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private bool drawMaxViewDist;
     [SerializeField] private Transform eyePos;
     [SerializeField] private float lerpSpeed;
+    [SerializeField] private float lostTargetSpinTime = 1f;
 
     [Header("Gameplay Stuff")]
     [SerializeField] private float alertMeter;
     [SerializeField] private List<MyTransform> patrolPath = new List<MyTransform>();
     [SerializeField] private List<Transform> publicPatrolPath;
     private Transform playerTransform;
+
+    [Header("Enemy Alerting")]
+    [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private float radius;
 
     private Vector3 targetLastKnown = Vector3.zero;
     void Start()
@@ -253,12 +259,25 @@ public class EnemyController : MonoBehaviour
             }
         }
 
+    }
+
+    public void GetAlerted(Vector3 playerPos)
+    {
+        targetLastKnown = playerPos;
+        currentState = EnemyState.Chase;
+        alertMeter = maxAlert;
+        agent.SetDestination(playerPos);
 
     }
 
     private float chaseTimer = 0f;
     private bool noSpinReset = false;
     private bool spinDirRight = false;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius); 
+    }
     void Chase()
     {
         //Debug.Log("On chase func");
@@ -279,6 +298,15 @@ public class EnemyController : MonoBehaviour
         {
             chaseTimer = 0f;
             alertMeter = maxAlert;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius, enemyMask);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].CompareTag("Enemy") && colliders[i].GetInstanceID() != GetInstanceID())
+                {
+                    Debug.Log("Enemy found in the area");
+                    colliders[i].GetComponent<EnemyController>().GetAlerted(targetLastKnown);
+                }
+            }
         }
         else
         {
@@ -292,15 +320,17 @@ public class EnemyController : MonoBehaviour
                     spinDirRight = Random.value > 0.5f ? true : false;
                     noSpinReset = true;
                     agent.isStopped = true;
+                    //agent.ResetPath();
                 }
 
                 float val = 360 / (maxAlert / alertDecayAmount);
                 val = spinDirRight ? val * 1 : val * -1;
-                transform.Rotate(new Vector3(0f, val * Time.deltaTime, 0f), Space.Self);
+                //transform.Rotate(new Vector3(0f, val * Time.deltaTime, 0f), Space.Self);
 
                 if (alertMeter < 0)
                 {
                     currentState = EnemyState.LostTarget;
+                    chaseTimer = 0f;
                     noSpinReset = false;
                     agent.isStopped = false;
                 }
@@ -323,13 +353,37 @@ public class EnemyController : MonoBehaviour
         // Instead of dealing instant damage do a swing with a collider and check if it hits the player
         // That way for ranged can do a bullet (maybe if the player is a certain range away they shoot)
     }
+
+    private float lostTargetgSpinTimer = 0f;
+    bool lostTargetSpinReset = false;
+    bool lostSpinDir = false;
     void LostTarget()
     {
         //Debug.Log("On Target Lost Func");
         targetLastKnown = Vector3.zero;
         agent.isStopped = true;
-        agent.SetDestination(patrolPath[0].Position);
-        currentState = EnemyState.Idle;
+        lostTargetgSpinTimer += Time.deltaTime;
+        if (lostTargetgSpinTimer <= lostTargetSpinTime)
+        {
+            if (!lostTargetSpinReset)
+            {
+                lostSpinDir = Random.value > 0.5f ? true : false;
+                lostTargetSpinReset = true;
+                agent.isStopped = true;
+            }
+
+            float val = 360f / lostTargetSpinTime;
+            val = spinDirRight ? val * 1 : val * -1;
+            transform.Rotate(new Vector3(0f, val * Time.deltaTime, 0f), Space.Self);
+        }
+        else
+        {
+            agent.SetDestination(patrolPath[0].Position);
+            currentState = EnemyState.Idle;
+            lostTargetgSpinTimer = 0f;
+            lostTargetSpinReset = false;
+        }
+        
     }
 
     public void EnemyHit(float damage)
