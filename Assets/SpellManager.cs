@@ -43,7 +43,7 @@ public class SpellManager : MonoBehaviour
             { 1,2,3},
             {0, 4, 0},
             {5,6,7,}
-        }, true)},
+        }, false)},
 
         { "fireball", new SpellShape(new int[,]{
             {0,4,3},
@@ -61,12 +61,12 @@ public class SpellManager : MonoBehaviour
             {9,8,6},
             {7,5,3},
             {4,2,1}
-        }, true)},
+        }, false)},
 
         { "lightning_bolt", new SpellShape(new int[,]{
-            {5,3,0},
-            {4,2,0},
-            {0,0,1}
+            {0,1,0},
+            {2,3,4},
+            {0,5,0}
         }, true)},
         
         { "dark_vision", new SpellShape(new int[,]{
@@ -91,19 +91,19 @@ public class SpellManager : MonoBehaviour
             {3,2,1},
             {4,5,6},
             {9,8,7}
-        }, true)},
+        }, false)},
 
         { "bend_time", new SpellShape(new int[,]{
-            {1,2,3},
-            {0,4,0},
-            {5,6,7}
-        }, true)},
+            {5,6,7},
+            {9,4,8},
+            {1,2,3}
+        }, false)},
 
         { "tornado", new SpellShape(new int[,]{
             {1,2,3},
             {8,9,4},
             {7,6,5}
-        }, true)},
+        }, false)},
 
         { "summon_minion", new SpellShape(new int[,]{
             {3,0,5},
@@ -112,9 +112,9 @@ public class SpellManager : MonoBehaviour
         }, true)},
 
         { "alter_mind", new SpellShape(new int[,]{
-            {3,8,9},
-            {2,5,7},
-            {1,6,0}
+            {3,7,8},
+            {2,4,6},
+            {1,5,0}
         }, true)},
 
         { "abyss", new SpellShape(new int[,]{
