@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundDrag;
     [SerializeField] private float maxCameraAngleOnMove;
     [SerializeField] private float cameraLerpTime;
+    [SerializeField] private float maxSpeed = 400f;
 
     [Header("Mouse Movement Settings")] private float xRotation;
     [SerializeField] private float sensitivity = 50f;
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Debug Stuff")]
     [SerializeField] private GameObject enemyPrefab;
+
+    [SerializeField] private Vector3 rbSpeed;
 
     private Rigidbody rb;
 
@@ -57,10 +60,13 @@ public class PlayerController : MonoBehaviour
     {
         moveSpeed *= amountToMult;
         groundDrag *= amountToMult;
+        maxSpeed *= amountToMult;
     }
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
+        rbSpeed = rb.velocity;
 
         UpdateCamera();
         InputHandling();
@@ -77,6 +83,14 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.drag = (grounded) ? groundDrag : 0;
+        rb.velocity = new Vector3(Clamp(rb.velocity.x, -maxSpeed, maxSpeed), Clamp(rb.velocity.y, -maxSpeed, maxSpeed), Clamp(rb.velocity.z, -maxSpeed, maxSpeed));
+    }
+
+    float Clamp(float value, float min, float max)
+    {
+        if (value > max) return max;
+        if (value < min) return min;
+        return value;
     }
 
     private void FixedUpdate()

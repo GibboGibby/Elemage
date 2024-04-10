@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 using TMPro;
-using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class VoiceController : MonoBehaviour
 {

@@ -6,7 +6,6 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class SpellInputController : MonoBehaviour
 {

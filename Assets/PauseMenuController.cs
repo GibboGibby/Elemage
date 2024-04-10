@@ -9,6 +9,8 @@ public class PauseMenuController : MonoBehaviour
     bool pauseOpen = false;
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject controls;
+
+    [SerializeField] private PlayerController player;
     float oldTimescale;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,9 @@ public class PauseMenuController : MonoBehaviour
                 menu.SetActive(true);
                 oldTimescale = Time.timeScale;
                 Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                player.enabled = false;
             }
             
 
@@ -42,6 +47,9 @@ public class PauseMenuController : MonoBehaviour
         pauseOpen = false;
         menu.SetActive(false);
         Time.timeScale = oldTimescale;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        player.enabled = true;
     }
 
     public void ShowControls()
