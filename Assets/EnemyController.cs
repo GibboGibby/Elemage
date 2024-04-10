@@ -65,6 +65,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float attackDamage = 25f;
     [SerializeField] private float totalAttackTime = 1.5f;
+    [SerializeField] private float timeUntilSleepKicksInIfAlert = 2.5f;
 
     [Header("Misc")]
     [SerializeField] private float enemyFov = 60f;
@@ -424,12 +425,20 @@ public class EnemyController : MonoBehaviour
 
     public void EnemySleep()
     {
+        if (alertMeter > 50f)
+            StartCoroutine(DelayedEnemySleep(timeUntilSleepKicksInIfAlert));
+        else
+            Sleep();
+    }
+
+    private void Sleep()
+    {
         rb.freezeRotation = false;
         //this.enabled = false;
         //GetComponent<Collider>().enabled = false;
         agent.isStopped = true;
         agent.enabled = false;
-        
+
         //transform.position += new Vector3(0f, 1.25f, 0f);
 
         rb.isKinematic = false;
@@ -441,5 +450,11 @@ public class EnemyController : MonoBehaviour
         if (bool2 == 1) temp.z *= -1f;
         rb.AddForceAtPosition(temp, eyePos.position, ForceMode.Force);
         GetComponent<EnemyController>().enabled = false;
+    }
+
+    private IEnumerator DelayedEnemySleep(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Sleep();
     }
 }

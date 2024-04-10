@@ -163,6 +163,7 @@ MonoBehaviour:
   attackRange: 2
   attackDamage: 25
   totalAttackTime: 1.5
+  timeUntilSleepKicksInIfAlert: 5
   enemyFov: 75
   maxViewDist: 50
   drawFov: 1

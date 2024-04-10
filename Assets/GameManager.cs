@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -91,5 +92,11 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         player.enabled = false;
         player.gameObject.GetComponent<PlayerSpellController>().enabled = false;
+    }
+
+    public void GameOverWin()
+    {
+        gameOverUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "You Win!";
+        GameOver();
     }
 }
