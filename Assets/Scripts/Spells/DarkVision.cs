@@ -11,7 +11,7 @@ public class DarkVision : SpellMono
 
     public DarkVision()
     {
-        spellName = "DarkVision";
+        spellName = "Dark Vision";
     }
 
     bool started = false;
@@ -62,7 +62,7 @@ public class DarkVision : SpellMono
 
     public override void OnRelease(bool isRightHand)
     {
-        //isRightHandLocal = isRightHand;
+        isRightHandLocal = isRightHand;
         if (!started)
         {
             StartDarkVision();

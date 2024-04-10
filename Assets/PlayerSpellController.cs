@@ -70,7 +70,8 @@ public class PlayerSpellController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             playerController.enabled = false;
-            Time.timeScale = 0.2f;
+            
+            //Time.timeScale = 1f;
             spellInputEnabled = true;
             rightHandCanvas.SetActive(true);
             leftHandCanvas.SetActive(true);
@@ -82,7 +83,7 @@ public class PlayerSpellController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             playerController.enabled = true;
-            Time.timeScale = 1.0f;
+            //Time.timeScale = 1.0f;
             spellInputEnabled = false;
             rightHandCanvas.SetActive(false);
             leftHandCanvas.SetActive(false);

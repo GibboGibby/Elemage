@@ -52,6 +52,12 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    public void ChangeSpeed(float amountToMult)
+    {
+        moveSpeed *= amountToMult;
+        groundDrag *= amountToMult;
+    }
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
@@ -147,6 +153,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerHit(float damage)
     {
         health -= damage;
+        Camera.main.transform.parent.GetComponent<MoveCamera>().CameraShake();
         if (health <= 0)
         {
             Debug.Log("Game Over");

@@ -128,6 +128,19 @@ public class VoiceController : MonoBehaviour
         transform.Translate(-1, 0, 0);
     }
 
+    // 1 = left, 2 = right and 3 = both
+    private void SpellFailed(int id)
+    {
+        if (id == 1) // Left
+        {
+            leftHandSpellInputController.transform.parent.GetComponent<SpellCanvasController>().Shake();
+        }
+        else if (id == 2) // Right
+        {
+            rightHandSpellInputController.transform.parent.GetComponent<SpellCanvasController>().Shake();
+        }
+    }
+
     private void AddSpellToHand(string spell)
     {
         if (!SpellManager.SpellShapes.ContainsKey(spell) || !SpellManager.SpellMonos.ContainsKey(spell))
@@ -147,6 +160,7 @@ public class VoiceController : MonoBehaviour
 
                 playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], false);
             }
+            else if (temp != other) { SpellFailed(1); }
         }
 
         if (Input.GetKey(KeyCode.E))
@@ -162,6 +176,7 @@ public class VoiceController : MonoBehaviour
 
                 playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], true);
             }
+            else SpellFailed(2);
         }
 
         if (!Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E))
@@ -175,6 +190,7 @@ public class VoiceController : MonoBehaviour
 
                 playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], false);
             }
+            else SpellFailed(1);
             SpellShape temp = new SpellShape(rightHandSpellInputController.GetCurrentOrder().ToArray(), rightHandSpellInputController.GetCurrentOrder().Count);
             if (temp == SpellManager.SpellShapes[spell])
             {
@@ -183,6 +199,8 @@ public class VoiceController : MonoBehaviour
 
                 playerSpellController.AddSpellToHand(SpellManager.SpellMonos[spell], true);
             }
+            else SpellFailed(2);
+
         }
     }
 

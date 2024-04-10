@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Gameplay Stuff")]
     [SerializeField] private float alertMeter;
-    [SerializeField] private List<MyTransform> patrolPath = new List<MyTransform>();
+    [SerializeField] private List<MyTransform> patrolPath = new List<MyTransform>(1);
     [SerializeField] private List<Transform> publicPatrolPath;
     private Transform playerTransform;
 
@@ -99,7 +99,10 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (publicPatrolPath.Count == 0)
         {
-            patrolPath.Add(new MyTransform(transform.position, transform.rotation));
+            if (patrolPath.Count == 0)
+                patrolPath.Add(new MyTransform(transform.position, transform.rotation));
+            else
+                patrolPath[0] = new MyTransform(transform.position, transform.rotation);
         }
         else
         {
@@ -110,6 +113,7 @@ public class EnemyController : MonoBehaviour
             }
             transform.position = patrolPath[0].Position;
             transform.rotation = patrolPath[0].Rotation;
+            
         }
 
         playerTransform = GameManager.Instance.GetPlayer().transform;
@@ -175,9 +179,13 @@ public class EnemyController : MonoBehaviour
         //Debug.Log("On idle func");
         if (patrolPath.Count > 1 && !targetFound)
         {
+            //Debug.Log("Enemy attempting to go to the patrol path value with index of - " + pathValue);
             agent.destination = patrolPath[pathValue].Position;
-            if (Mathf.Abs(Vector3.Distance(transform.position, patrolPath[pathValue].Position)) < 0.3f)
+            Vector3 enemy = new Vector3(transform.position.x, 0, transform.position.z);
+            Vector3 path = new Vector3(patrolPath[pathValue].Position.x, 0, patrolPath[pathValue].Position.z);
+            if (Mathf.Abs(Vector3.Distance(enemy, path)) < 0.3f)
             {
+                //Debug.Log("It gets the position properly and says it is close enough");
                 pathValue++;
                 if (pathValue > patrolPath.Count-1)
                 {

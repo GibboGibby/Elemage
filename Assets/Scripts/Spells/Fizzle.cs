@@ -35,10 +35,7 @@ public class Silence : Fizzle
 {
     public Silence() { spellName = "Silence"; }
 }
-public class BendTime : Fizzle
-{
-    public BendTime() { spellName = "Bend Time"; }
-}
+
 public class Tornado : Fizzle
 {
     public Tornado() { spellName = "Tornado"; }
