@@ -28,7 +28,7 @@ public class BendTime : SpellMono
     bool isRightHandLocal = false;
     private void Update()
     {
-        if (started)
+        if (started && !PauseMenuController.IsPaused)
         {
             timer += Time.deltaTime;
             if (timer >= maxTime)
