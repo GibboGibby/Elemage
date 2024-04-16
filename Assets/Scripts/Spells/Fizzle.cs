@@ -17,6 +17,7 @@ public class Fizzle : SpellMono
     public override void OnRelease(bool isRightHand)
     {
         Debug.Log("Fizzle");
+        GameManager.Instance.GetSpellAudio().PlaySound("fizzle");
         GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
     }
 }

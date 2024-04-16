@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject gameOverUI;
+
+    [SerializeField] private SpellAudio spellAudio;
     // Start is called before the first frame update
     void Awake()
     {
@@ -99,4 +101,6 @@ public class GameManager : MonoBehaviour
         gameOverUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "You Win!";
         GameOver();
     }
+
+    public SpellAudio GetSpellAudio() { return spellAudio; }
 }

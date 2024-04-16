@@ -32,6 +32,7 @@ public class LightningOrb : SpellMono
     {
         //RaycastHit hit;
         bool rayHit = false;
+        
         if (RaycastBase.AbilityRaycast("EnemyTwo", 20f, out RaycastHit hit))
         {
             rayHit = true;
@@ -62,7 +63,10 @@ public class LightningOrb : SpellMono
             StartCoroutine(LightningOrbStuff(isRightHand, orb, lr, mr));
         }
         if (!rayHit)
+        {
             GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
+            PlaySound("fizzle");
+        }
     }
 
     private IEnumerator LightningOrbStuff(bool isRightHand, GameObject obj, LineRenderer lr, MeshRenderer mr)
@@ -76,7 +80,7 @@ public class LightningOrb : SpellMono
 
         float maxTime = 0.1f;
         float maxScale = range * 2;
-
+        PlaySound("lightning_orb");
         while (elapsed <= maxTime)
         {
             elapsed += Time.deltaTime;
@@ -90,6 +94,7 @@ public class LightningOrb : SpellMono
         yield return new WaitForSeconds(0.2f);
         Destroy(obj);
         GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
+        
     }
     
 }

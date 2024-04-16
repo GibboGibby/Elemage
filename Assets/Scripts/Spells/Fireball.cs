@@ -39,6 +39,7 @@ public class Fireball : SpellMono
         fireball.transform.position = main.transform.position + main.transform.forward;
         fireball.GetComponent<Rigidbody>().AddForce(main.transform.forward * 50f, ForceMode.Impulse);
 
+        PlaySound("fireball");
         GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
     }
 }

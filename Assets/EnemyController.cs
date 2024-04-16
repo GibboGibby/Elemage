@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] EnemyState currentState = EnemyState.Idle;
     [SerializeField] private float attackDistance = 2f;
 
-    
+    private EnemyAudioController audioController;
     
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform test;
@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
     
     [Header("Investigating Stats")]
     [SerializeField] private float alertPerSecond = 40f;
-    [SerializeField] private float maxAlert = 105f;
+    [SerializeField] private float maxAlert = 60f;
     [SerializeField] private float timeForAlertDecay = 2f;
     [SerializeField] private float alertDecayAmount = 30f;
     [Header("Attack Stats")]
@@ -95,6 +95,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioController = GetComponent<EnemyAudioController>();
         if (publicPatrolPath.Count == 0)
         {
             if (patrolPath.Count == 0)
@@ -225,6 +226,7 @@ public class EnemyController : MonoBehaviour
             currentState = EnemyState.Investigating;
             idleResetDone = false;
             alertMeter = 5f;
+            audioController.PlaySound("startingInvest");
         }
     }
 
@@ -268,9 +270,10 @@ public class EnemyController : MonoBehaviour
         {
             alertMeter += alertPerSecond * Time.deltaTime;
             Mathf.Clamp(alertMeter, 0, maxAlert);
-            if (alertMeter > maxAlert)
+            if (alertMeter >= maxAlert)
             {
                 currentState = EnemyState.Chase;
+                audioController.PlaySound("alert");
             }
         }
         else

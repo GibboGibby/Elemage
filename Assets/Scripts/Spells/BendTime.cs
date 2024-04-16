@@ -35,6 +35,7 @@ public class BendTime : SpellMono
             {
                 Debug.Log("EndVision");
                 EndBendTime();
+                PlaySound("bend_time_end");
                 GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHandLocal);
             }
         }
@@ -61,10 +62,12 @@ public class BendTime : SpellMono
         if (!started)
         {
             StartBendTime();
+            PlaySound("bend_time");
         }
         else
         {
             EndBendTime();
+            PlaySound("bend_time_end");
             GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
         }
         started = true;

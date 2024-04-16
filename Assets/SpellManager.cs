@@ -9,6 +9,11 @@ public abstract class SpellMono : MonoBehaviour
     public abstract void OnPress();
     public abstract void OnHold();
     public abstract void OnRelease(bool isRightHand);
+
+    protected void PlaySound(string spell)
+    {
+        GameManager.Instance.GetSpellAudio().PlaySound(spell);
+    }
 }
 
 public class SpellManager : MonoBehaviour

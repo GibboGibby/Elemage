@@ -40,6 +40,7 @@ public class DarkVision : SpellMono
                 Debug.Log("EndVision");
                 EndDarkVision();
                 GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHandLocal);
+                PlaySound("dark_vision_end");
             }
         }
     }
@@ -66,11 +67,13 @@ public class DarkVision : SpellMono
         if (!started)
         {
             StartDarkVision();
+            PlaySound("dark_vision");
         }
         else
         {
             EndDarkVision();
             GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
+            PlaySound("dark_vision_end");
         }
         started = true;
     }

@@ -36,6 +36,7 @@ public class Sleep : SpellMono
         fireball.GetComponent<Rigidbody>().AddForce(mainCam.transform.forward * 20f, ForceMode.Impulse);
         fireball.transform.rotation = mainCam.transform.rotation;
 
+        PlaySound("sleep");
         GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
     }
 }

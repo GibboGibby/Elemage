@@ -31,8 +31,10 @@ public class LightningBolt : SpellMono
     {
         //RaycastHit hit;
         bool rayHit = false;
+        
         if (RaycastBase.AbilityRaycast("EnemyTwo", 20f, out RaycastHit hit))
         {
+            PlaySound("lightning_bolt");
             rayHit = true;
             Debug.Log("Enemy found and firing lightning bolt at");
             Debug.Log(hit.collider.gameObject.name);
@@ -85,7 +87,10 @@ public class LightningBolt : SpellMono
         }
 
         if (!rayHit)
+        {
+            PlaySound("fizzle");
             GetComponent<PlayerSpellController>().RemoveSpellFromHand(isRightHand);
+        }
     }
 
     private IEnumerator LightningBoltStuff(bool rightHand, GameObject lightningBolt)

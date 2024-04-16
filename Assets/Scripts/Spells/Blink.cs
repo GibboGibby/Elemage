@@ -57,6 +57,7 @@ public class Blink : SpellMono
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         //StartCoroutine(BlinkCoroutine(transform.position, transform.position + mainCam.transform.forward * 50f,isRightHand));
+        PlaySound("blink");
         StartCoroutine(BlinkCoroutine(transform.position, targetPos,isRightHand));
     }
 }
