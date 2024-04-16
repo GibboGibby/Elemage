@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     private float desiredX;
     private float horizonalInput, verticalInput;
     // Start is called before the first frame update
+
+    // MANA? I think that would be good?
     void Start()
     {
         health = maxHealth;

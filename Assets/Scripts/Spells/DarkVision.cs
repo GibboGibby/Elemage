@@ -31,7 +31,7 @@ public class DarkVision : SpellMono
     private void Update()
     {
 
-        if (started)
+        if (started && !PauseMenuController.IsPaused)
         {
             timer += Time.deltaTime;
             StartDarkVision();

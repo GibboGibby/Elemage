@@ -10,13 +10,18 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject controls;
 
+    public static bool IsPaused = false;
+
     [SerializeField] private PlayerController player;
+    [SerializeField] private PlayerSpellController spellController;
     float oldTimescale;
     // Start is called before the first frame update
     void Start()
     {
         menu.SetActive(false);
         controls.SetActive(false);
+        IsPaused = false;
+        spellController = player.GetComponent<PlayerSpellController>();
     }
 
     // Update is called once per frame
@@ -26,16 +31,19 @@ public class PauseMenuController : MonoBehaviour
         {
             if (pauseOpen) {
                 Resume();
+                
             }
             else
             {
                 pauseOpen = true;
+                PauseMenuController.IsPaused = true;
                 menu.SetActive(true);
                 oldTimescale = Time.timeScale;
                 Time.timeScale = 0f;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 player.enabled = false;
+                spellController.enabled = false;
             }
             
 
@@ -44,12 +52,14 @@ public class PauseMenuController : MonoBehaviour
 
     public void Resume()
     {
+        PauseMenuController.IsPaused = false;
         pauseOpen = false;
         menu.SetActive(false);
         Time.timeScale = oldTimescale;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         player.enabled = true;
+        spellController.enabled = true;
     }
 
     public void ShowControls()
@@ -65,5 +75,6 @@ public class PauseMenuController : MonoBehaviour
     public void ToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
     }
 }
