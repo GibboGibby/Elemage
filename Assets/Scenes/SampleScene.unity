@@ -9317,7 +9317,6 @@ GameObject:
   m_Component:
   - component: {fileID: 852675212}
   - component: {fileID: 852675209}
-  - component: {fileID: 852675211}
   - component: {fileID: 852675210}
   m_Layer: 0
   m_Name: UICam
@@ -9421,14 +9420,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &852675211
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852675208}
-  m_Enabled: 1
 --- !u!4 &852675212
 Transform:
   m_ObjectHideFlags: 0
@@ -9887,7 +9878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7.6254883, y: -4.2892456}
+  m_AnchoredPosition: {x: 7.6254883, y: -4.2893066}
   m_SizeDelta: {x: 51.6462, y: 29.0511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &924470433
@@ -11810,7 +11801,7 @@ MonoBehaviour:
     volume: 2.5
   - name: fireball
     audio: {fileID: 8300000, guid: bdec6ef298084b94ea9196e860d1fa56, type: 3}
-    volume: 0.8
+    volume: 0.65
   - name: blink
     audio: {fileID: 8300000, guid: 10e3a57a43ae2144daf147d61bde6543, type: 3}
     volume: 5
@@ -11823,6 +11814,9 @@ MonoBehaviour:
   - name: sleep
     audio: {fileID: 8300000, guid: 2235ed67b7bd52b4590160de8ad4a98c, type: 3}
     volume: 2.5
+  - name: ding
+    audio: {fileID: 8300000, guid: c66dcbf1a26baff46a3ad34799f32270, type: 3}
+    volume: 0.45
 --- !u!82 &1182394062
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36949,11 +36943,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3907252521033406694, guid: 8e8dbecc9522ac0488336909730d3935, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -571.9999
+      value: -571.9998
       objectReference: {fileID: 0}
     - target: {fileID: 3907252521033406694, guid: 8e8dbecc9522ac0488336909730d3935, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25.400055
+      value: -25.400085
       objectReference: {fileID: 0}
     - target: {fileID: 4141148263931834964, guid: 8e8dbecc9522ac0488336909730d3935, type: 3}
       propertyPath: m_Name

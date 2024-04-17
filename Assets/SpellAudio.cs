@@ -46,10 +46,13 @@ public class SpellAudio : MonoBehaviour
         
     }
 
-    public void PlaySound(string soundName)
+    public void PlaySound(string soundName, bool atPoint = true)
     {
         //AudioSource.clip = m_audioClips[soundName];
         if (!m_audioClips.ContainsKey(soundName)) { Debug.Log("spell audio not found"); return; }
-        AudioSource.PlayClipAtPoint(m_audioClips[soundName].audioClip, playerPos.position, m_audioClips[soundName].volume);
+        if (atPoint)
+            AudioSource.PlayClipAtPoint(m_audioClips[soundName].audioClip, playerPos.position, m_audioClips[soundName].volume);
+        else
+            AudioSource.PlayOneShot(m_audioClips[soundName].audioClip, m_audioClips[soundName].volume);
     }
 }

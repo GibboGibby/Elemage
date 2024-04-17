@@ -34,6 +34,7 @@ public class PlayerSpellController : MonoBehaviour
 
     public void AddSpellToHand(SpellMono spell, bool rightHand)
     {
+        GameManager.Instance.GetSpellAudio().PlaySound("ding", false);
         if (rightHand)
         {
             if (rightMainSpell == null) rightMainSpell = (SpellMono)gameObject.AddComponent(spell.GetType());
