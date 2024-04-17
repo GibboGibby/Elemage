@@ -32,6 +32,14 @@ public class GibDictEnemyControllerItem
     public EnemyController obj;
 }
 
+public struct DominoEffector
+{
+    public List<EnemyController> enemies;
+    public bool dominoed;
+}
+
+
+
 public class SpellEffectController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -39,6 +47,16 @@ public class SpellEffectController : MonoBehaviour
 
     private Dictionary<int, EnemyController> linkedEnemiesDict;
     [SerializeField] private GibDictEnemyController gibDict;
+
+    public DominoEffector NewDominoEffector()
+    {
+        DominoEffector effector = new DominoEffector();
+        effector.dominoed = false;
+        effector.enemies = new List<EnemyController>();
+        return effector;
+    }
+
+    private Dictionary<EnemyController, DominoEffector> dominoDict = new Dictionary<EnemyController, DominoEffector>();
 
     private void Awake()
     {
@@ -62,14 +80,26 @@ public class SpellEffectController : MonoBehaviour
         
     }
 
-    public bool CheckIfEnemyLinked(GameObject obj)
+    public bool CheckIfEnemyLinked(EnemyController ec)
     {
-        if (linkedEnemiesDict.ContainsKey(obj.GetInstanceID())) return true;
+        //if (linkedEnemiesDict.ContainsKey(obj.GetInstanceID())) return true;
+        if (dominoDict.ContainsKey(ec) && !dominoDict[ec].dominoed) return true;
         return false;
+        //return false;
     }
 
-    public void AddEnemyToLinked(int objID, EnemyController enemyController)
+    public void AddEnemyToLinked(EnemyController enemyOne, EnemyController enemyTwo)
     {
-        linkedEnemiesDict.Add(objID, enemyController);
+        //linkedEnemiesDict.Add(objID, enemyController);
+        if(dominoDict.ContainsKey(enemyOne))
+        {
+            DominoEffector de = NewDominoEffector();
+            de.enemies.Add(enemyTwo);
+            dominoDict[enemyOne] = de;
+        }
+        else
+        {
+            dominoDict[enemyOne].enemies.Add(enemyTwo);
+        }
     }
 }
