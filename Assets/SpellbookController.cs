@@ -13,6 +13,8 @@ public class SpellbookController : MonoBehaviour
     [SerializeField] private Image doubleImg;
     [SerializeField] private Image img1;
     [SerializeField] private Image img2;
+
+    [SerializeField] private GameObject spellbookText;
     private int maxPages;
     private int currentPage = 0;
 
@@ -29,6 +31,8 @@ public class SpellbookController : MonoBehaviour
         doubleImg.enabled = false;
         img1.enabled = false;
         img2.enabled = false;
+
+        spellbookText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -93,6 +97,7 @@ public class SpellbookController : MonoBehaviour
     private void ShowBook()
     {
         GameManager.Instance.SetMainUI(false);
+        spellbookText.SetActive(true);
         if (doublePages)
             doubleImg.enabled = true;
         else
@@ -105,6 +110,7 @@ public class SpellbookController : MonoBehaviour
     private void HideBook()
     {
         GameManager.Instance.SetMainUI(true);
+        spellbookText.SetActive(false);
         if (doublePages)
             doubleImg.enabled = false;
         else

@@ -99,9 +99,9 @@ public class SpellManager : MonoBehaviour
         }, false)},
 
         { "bend_time", new SpellShape(new int[,]{
-            {5,6,7},
-            {9,4,8},
-            {1,2,3}
+            {0,1,4},
+            {5,2,0},
+            {0,3,6}
         }, false)},
 
         { "tornado", new SpellShape(new int[,]{
