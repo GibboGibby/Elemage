@@ -7,9 +7,11 @@ public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private GameObject creditsPanel;
     void Start()
     {
         HideControls();
+        HideCredits();
     }
 
     // Update is called once per frame
@@ -31,6 +33,17 @@ public class MainMenu : MonoBehaviour
     public void HideControls()
     {
         controlsPanel.SetActive(false);
+    }
+
+    public void ShowCredits()
+    {
+        creditsPanel.SetActive(true);
+    }
+
+    public void HideCredits()
+    {
+        creditsPanel.SetActive(false);
+
     }
 
     public void Quit()
