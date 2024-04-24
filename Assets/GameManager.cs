@@ -96,9 +96,14 @@ public class GameManager : MonoBehaviour
         player.gameObject.GetComponent<PlayerSpellController>().enabled = false;
     }
 
+    private string killedLotsText = "More elementals will spawn\r\nThe wolds magic resents you";
+    private string killedNotLotsText = "You have halted the spawn of elementals\r\nThe worlds magic accepts you";
     public void GameOverWin()
     {
         gameOverUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "You Win!";
+        gameOverUI.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Enemies Killed - " + EnemyCounterThing.Instance.GetKilledCount().ToString() + "/" + (EnemyCounterThing.Instance.GetKilledCount() + EnemyCounterThing.Instance.CountEnemiesLeft()).ToString();//12 / 50;
+        gameOverUI.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = (EnemyCounterThing.Instance.GetKilledCount() < (EnemyCounterThing.Instance.GetKilledCount() + EnemyCounterThing.Instance.CountEnemiesLeft()) * 0.5) ? killedNotLotsText : killedLotsText;
+        EnemyCounterThing.Instance.ResetCounters();
         GameOver();
     }
 

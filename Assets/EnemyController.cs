@@ -428,6 +428,7 @@ public class EnemyController : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            EnemyCounterThing.Instance.IncrementKilledCounter();
             Destroy(gameObject);
         }
     }
