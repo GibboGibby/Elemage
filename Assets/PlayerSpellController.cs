@@ -172,7 +172,7 @@ public class PlayerSpellController : MonoBehaviour
     {
         HandleSpellInput();
 
-        if (spellInputEnabled && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             //Swap Spells
             if (Input.GetKey(KeyCode.Q))
